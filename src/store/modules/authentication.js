@@ -25,14 +25,12 @@ const authentication = {
     },
     actions: {
         checkUser (context, user) {
-            
-            var retailerRef = firebase.database().ref('/users/' + user.uid + '/isRetailer').once('value').then(snapshot => { snapshot.val() })
-            
+    
             if (!user.uid) {
 
                 // Do nothing.
 
-            } else if (retailerRef === true) {
+            } else if (firebase.database().ref('/users/' + user.uid).once('value').then((snapshot) => snapshot.val().isRetailer)) {
 
                 context.commit('authUser', user);
                 
@@ -62,6 +60,8 @@ const authentication = {
         
         },
         setNewUser (context, payload) {
+            
+            // Sets a user in firebase w/ a isRetailer value of false. 
             
             var uid = payload.user.uid;
             

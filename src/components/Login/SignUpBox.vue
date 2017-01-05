@@ -1,28 +1,36 @@
 <template>
 	
 	<div class="box">
+	    
+	    <p>New Customer Account</p>
+	    <small>Required fields *</small>
 		
-		<label class="label">NAME</label>
+		<label class="label">NAME *</label>
         <p class="control">
           <input class="input is-medium" type="email" v-model="newUserName">
         </p>
 		
-		<label class="label">EMAIL</label>
+		<label class="label">EMAIL *</label>
         <p class="control">
           <input class="input is-medium" type="email" v-model="newUserEmail">
         </p>
         
-        <label class="label">PASSWORD</label>
+        <label class="label">PASSWORD *</label>
         <p class="control">
           <input class="input is-medium" type="password" v-model="newUserPassword">
         </p>
         
-        <label class="label">CONFIRM PASSWORD</label>
+        <label class="label">CONFIRM PASSWORD *</label>
         <p class="control">
           <input class="input is-medium" type="password" v-model="confirmPassword">
         </p>
         
-        <a class="button is-light" @click="createNewUser()">SIGN UP</a>
+        <a class="login-btn button is-light" @click="createNewUser()">
+          <span class="icon">
+            <div data-icon="ei-lock" data-size="s"></div>
+          </span>
+          <span>LOGIN</span>
+        </a>
 	
 	</div>
 
@@ -85,7 +93,6 @@ export default {
 
 .box {
     width: 500px;
-    margin-top: 20px
 }
 
 label {
@@ -95,6 +102,10 @@ label {
 .button {
 	margin-top: 40px;
 	float: right;
+}
+
+small {
+    color: #8f8f8f;
 }
 
 </style>

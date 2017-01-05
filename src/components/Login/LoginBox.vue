@@ -1,18 +1,29 @@
 <template>
 	
 	<div class="box">
+	  
+	      <div class="mini-flex">
+	        <p>Returning User</p>
+	        <div class="icon" data-icon="ei-like" data-size="s"></div>
+	      </div>
 		
-		    <label class="label">EMAIL</label>
+		    <label class="label">EMAIL *</label>
         <p class="control">
           <input class="input is-medium" type="email" v-model="email">
         </p>
         
-        <label class="label">PASSWORD</label>
+        <label class="label">PASSWORD *</label>
         <p class="control">
           <input class="input is-medium" type="password" v-model="password">
+          <small class="forgot-pw">Forgot Password?</small>
         </p>
         
-        <a class="button is-light" @click="signIn()">LOGIN</a>
+        <a class="login-btn button is-light" @click="signIn()">
+          <span class="icon">
+            <div data-icon="ei-lock" data-size="s"></div>
+          </span>
+          <span>LOGIN</span>
+        </a>
 	
 	</div>
 
@@ -46,7 +57,7 @@ export default {
                 var errorMessage = error.message;
                 // ...
             });
-        
+
             // Push to home 
             
             router.push({ path: '/' });
@@ -60,17 +71,30 @@ export default {
 
 .box {
     width: 500px;
-    height: 462px;
-    margin-top: 20px;
+    height: 502px;
 }
 
 label {
 	margin-top: 20px
 }
 
-.button {
-	margin-top: 40px;
+input {
+  margin-bottom: 10px;
+}
+
+.login-btn {
+	margin-top: 190px;
 	float: right;
+}
+
+.mini-flex {
+  display: flex;
+}
+
+.forgot-pw {
+  font-size: 12px;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 </style>

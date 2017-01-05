@@ -6,13 +6,13 @@
 		
 		<label class="label">EMAIL</label>
         <p class="control">
-          <input class="input is-medium" type="email" v-model="retailerEmail">
+          <input class="input is-medium" type="email" v-model="email">
         </p>
         <small>This should be the email you provided Snapshelf when you applied.</small>
         
         <label class="label">PASSWORD</label>
         <p class="control">
-          <input class="input is-medium" type="password" v-model="retailerPassword">
+          <input class="input is-medium" type="password" v-model="password">
         </p>
         <small>This should be the password that was provided to you in your confirmation email.</small>
         
@@ -32,16 +32,16 @@ export default {
 	name: 'LoginBox',
 	data () {
 		return {
-			retailerEmail: '',
-			retailerPassword: ''
+			email: '',
+			password: ''
 		}
 	},
 	methods: {
 		signIn () {
             
             // Sign in a user w/ email and password.
-            var email = this.retailerEmail;
-            var password = this.retailerPassword; 
+            var email = this.email;
+            var password = this.password; 
             
             firebaseAuth.signInWithEmailAndPassword(email, password).catch(function(error) {
                 // Handle Errors here.

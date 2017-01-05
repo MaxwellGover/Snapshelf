@@ -52,6 +52,7 @@
 
 <script>
 import store from '../../store/index'
+import firebase from 'firebase'
 import { firebaseAuth } from '../../firebase/constants'
 import router from '../../main'
 
@@ -97,5 +98,6 @@ export default {
 
 .title {
 	font-family: 'Julius Sans One', sans-serif;
+	margin-left: 10px
 }
 </style>

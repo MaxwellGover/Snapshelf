@@ -29,7 +29,7 @@
         </p>
         <small>This should be the password that was provided to you in your confirmation email.</small>
         
-        <a class="button is-light" @click="onAccountCreate()">CREATE ACCOUNT</a>
+        <a class="button is-light" @click="signIn()">CREATE ACCOUNT</a>
         
     </div>
     
@@ -60,9 +60,9 @@ export default {
         };
     },
     methods: {
-        onAccountCreate () {
+        signIn () {
             
-            // Sign in a user w/ email and password.
+            // Activate a retailer w/ email and provided password.
             var email = this.retailerEmail;
             var password = this.retailerPassword; 
             
@@ -76,15 +76,14 @@ export default {
             // Checks for a user and dispatches an action. 
     
             firebaseAuth.onAuthStateChanged(user => {
-              store.dispatch('checkUser', user);
               
-              store.dispatch('setUser', {
+              store.dispatch('setRetailer', {
                   user,
                   name: this.retailerName,
                   email: this.retailerEmail,
-                  retailerLocation: this.retailerLocation
+                  retailerLocation: this.retailerLocation,
+                  isRetailer: true
               });
-            
                 
             });
             
@@ -109,6 +108,7 @@ export default {
 
 .box {
     width: 620px;
+    margin-top: 60px
 }
 
 .button {

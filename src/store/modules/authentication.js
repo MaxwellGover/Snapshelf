@@ -1,7 +1,10 @@
+import firebase from 'firebase'
+
 const authentication = {
     state: {
         isAuthed: false,
-        authId: ''
+        authId: '',
+        isRetailer: false
     },
     mutations: {
         authUser (state, user) {
@@ -21,25 +24,25 @@ const authentication = {
                 // Do nothing.
 
             } else {
-                
+
             context.commit('authUser', user);
 
-            }
+            };
         },
         signOut (context) {
             context.commit('notAuthed')
         },
-        setUser (context, payload) {
+        setRetailer (context, payload) {
             
             // Set retailer info in Firebase.
             
             var uid = payload.user.uid;
-            database.ref('/users/' + uid).set({
+            firebase.database().ref('/users/' + uid).set({
                 name: payload.name,
                 email: payload.email,
                 location: payload.retailerLocation,
-                isRetailer: true
-            })   
+                isRetailer: payload.isRetailer
+            });  
         
         }
     },

@@ -4,9 +4,9 @@
     
     <div class="box">
         
-        <p>CREATE A RETAILER ACCOUNT.</p>
+        <p>ACTIVATE YOUR ACCOUNT</p>
         
-        <label class="label">NAME OF RETAILER</label>
+        <label class="label">RETAILER NAME</label>
         <p class="control">
           <input class="input is-medium" type="text" v-model="retailerName">
         </p>
@@ -15,16 +15,19 @@
         <p class="control">
           <input class="input is-medium" type="text" v-model="retailerLocation">
         </p>
+        <small>Example: Lansing, MI</small>
         
         <label class="label">RETAILER EMAIL</label>
         <p class="control">
           <input class="input is-medium" type="email" v-model="retailerEmail">
         </p>
+        <small>This should be the email you provided Snapshelf when you applied.</small>
         
         <label class="label">RETAILER PASSWORD</label>
         <p class="control">
           <input class="input is-medium" type="password" v-model="retailerPassword">
         </p>
+        <small>This should be the password that was provided to you in your confirmation email.</small>
         
         <a class="button is-light" @click="onAccountCreate()">CREATE ACCOUNT</a>
         
@@ -43,7 +46,7 @@ export default {
     
     // Allows Snapshelf to create accounts for verified retailers.
     
-    name: 'RegisterForm',
+    name: 'ActivateForm',
     data () {
         return {
             
@@ -52,15 +55,18 @@ export default {
             retailerName: '',
             retailerLocation: '',
             retailerEmail: '',
-            retailerPassword: ''
+            retailerPassword: '',
+            verifyPassword: ''
         };
     },
     methods: {
         onAccountCreate () {
             
-            // Sign in a user w/ email and password. 
+            // Sign in a user w/ email and password.
+            var email = this.retailerEmail;
+            var password = this.retailerPassword; 
             
-            firebaseAuth.signInWithEmailAndPassword(this.retailerEmail, this.retailerPassword).catch(function(error) {
+            firebaseAuth.signInWithEmailAndPassword(email, password).catch(function(error) {
                 // Handle Errors here.
                 var errorCode = error.code;
                 var errorMessage = error.message;
@@ -70,9 +76,10 @@ export default {
             // Checks for a user and dispatches an action. 
     
             firebaseAuth.onAuthStateChanged(user => {
-    
-              store.dispatch('checkUser', {
-                  user: user,
+              store.dispatch('checkUser', user);
+              
+              store.dispatch('setUser', {
+                  user,
                   name: this.retailerName,
                   email: this.retailerEmail,
                   retailerLocation: this.retailerLocation

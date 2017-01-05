@@ -1,27 +1,28 @@
 <template>
-  <div id="app">
-    <router-view></router-view>
-  </div>
+    <div id="app">
+      <navigation></navigation>
+      <router-view></router-view>
+    </div>
 </template>
 
 <script>
-import {firebaseAuth} from './firebase/constants'
+import Navigation from './components/Navigation/Navigation'
+import { firebaseAuth } from './firebase/constants'
 import store from './store/index'
 
 export default {
   name: 'app',
+  components: {
+    Navigation
+  },
   created() {
-    
-    // Checks for a loggin in user and dispatches an action. 
+    console.log(store.state);
+    // Checks for a user and dispatches an action changing isAuthed state to true. 
     
     firebaseAuth.onAuthStateChanged(user => {
-      console.log('Dispatching checkUser action!')
-      store.dispatch('checkUser', {
-        payload: user
-      });
-    });
-    
-    
+      console.log(user);
+      store.dispatch('checkUser', user);
+    }); 
   }
 };
 
@@ -33,6 +34,5 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>

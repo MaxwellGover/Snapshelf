@@ -3,16 +3,20 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import App from './App'
-import RegisterStore from './views/RegisterStore'
 import store from './store/index'
 import VueRouter from 'vue-router'
+
+import Activate from './views/Activate'
+import Dashboard from './views/Dashboard'
+import Login from './views/Login'
 
 Vue.use(VueRouter)
 Vue.use(Vuex)
 
 const routes = [
-  { path: '/', component: App },
-  { path: '/create-store-account', component: RegisterStore }
+  { path: '/activate', component: Activate },
+  { path: '/dashboard', component: Dashboard },
+  { path: '/login', component: Login }
 ]
 
 const router = new VueRouter({

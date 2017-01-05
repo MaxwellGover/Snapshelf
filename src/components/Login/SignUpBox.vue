@@ -1,8 +1,6 @@
 <template>
 	
 	<div class="box">
-
-		<p>SIGN UP</p>
 		
 		<label class="label">NAME</label>
         <p class="control">
@@ -86,8 +84,8 @@ export default {
 <style scoped>
 
 .box {
-    width: 540px;
-    margin-top: 60px
+    width: 500px;
+    margin-top: 20px
 }
 
 label {
@@ -95,7 +93,7 @@ label {
 }
 
 .button {
-	margin-top: 60px;
+	margin-top: 40px;
 	float: right;
 }
 

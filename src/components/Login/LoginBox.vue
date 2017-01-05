@@ -1,8 +1,6 @@
 <template>
 	
 	<div class="box">
-
-		<p>LOGIN</p>
 		
 		    <label class="label">EMAIL</label>
         <p class="control">
@@ -61,8 +59,9 @@ export default {
 <style scoped>
 
 .box {
-    width: 540px;
-    margin-top: 60px;
+    width: 500px;
+    height: 462px;
+    margin-top: 20px;
 }
 
 label {
@@ -70,7 +69,7 @@ label {
 }
 
 .button {
-	margin-top: 60px;
+	margin-top: 40px;
 	float: right;
 }
 

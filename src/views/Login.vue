@@ -1,7 +1,13 @@
 <template>
 	<div class="container">
-		<login-box></login-box>
-		<sign-up-box></sign-up-box>
+		<div class="login-container">
+			<p class="header">SIGN IN</p>
+			<login-box></login-box>
+		</div>
+		<div class="login-container">
+			<p class="header">CREATE AN ACCOUNT</p>
+			<sign-up-box></sign-up-box>
+		</div>
 	</div>
 </template>
 
@@ -20,9 +26,20 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
 .container {
 	display: flex;
-	justify-content: space-between;
-	align-items: center
+	justify-content: space-around;
+	align-content: center;
+}
+.login-container {
+	display: flex;
+	flex-direction: column;
+	margin-top: 80px;
+}
+.header {
+	font-family: 'Montserrat', sans-serif;
+	font-size: 28px;
 }
 </style>

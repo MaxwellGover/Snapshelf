@@ -16,7 +16,7 @@ export default {
     Navigation
   },
   created() {
-    console.log(store.state);
+    console.log(store.state.authentication);
     // Checks for a user and dispatches an action changing isAuthed state to true. 
     
     firebaseAuth.onAuthStateChanged(user => {

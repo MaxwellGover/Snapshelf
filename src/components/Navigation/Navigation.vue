@@ -63,7 +63,7 @@ export default {
 		// Whenever isAuthed value changes in Vuex store, computed property will re-evaluate and trigger DOM updates. 
 		
 		isAuthed () {
-			return store.state.isAuthed
+			return store.state.authentication.isAuthed
 		}
 	},
 	methods: {

@@ -9,24 +9,40 @@ const authentication = {
     mutations: {
         authUser (state, user) {
             state.isAuthed = true;
-            state.authId = user.uid 
+            state.authId = user.uid;
         },
         notAuthed (state) {
             state.isAuthed = false;
-            state.authId = ''
+            state.authId = '';
+            state.isRetailer = false
+        },
+        isRetailer (state) {
+            state.isRetailer = true
+        },
+        isNotRetailer (state) {
+            state.isRetailer = false
         }
     },
     actions: {
         checkUser (context, user) {
             
+            var retailerRef = firebase.database().ref('/users/' + user.uid + '/isRetailer').once('value').then(snapshot => { snapshot.val() })
+            
             if (!user.uid) {
 
                 // Do nothing.
 
+            } else if (retailerRef === true) {
+
+                context.commit('authUser', user);
+                
+                context.commit('isRetailer');
+
             } else {
-
-            context.commit('authUser', user);
-
+                
+                context.commit('authUser', user);
+                
+                context.commit('isNotRetailer');
             };
         },
         signOut (context) {
@@ -44,6 +60,16 @@ const authentication = {
                 isRetailer: payload.isRetailer
             });  
         
+        },
+        setNewUser (context, payload) {
+            
+            var uid = payload.user.uid;
+            
+            firebase.database().ref('/users/' + uid).set({
+                name: payload.name,
+                email: payload.email,
+                isRetailer: payload.isRetailer
+            });
         }
     },
     getters: {}

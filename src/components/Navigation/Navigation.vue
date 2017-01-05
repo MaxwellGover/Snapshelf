@@ -22,17 +22,17 @@
       			</span>
       			
       			<!-- If user is signed in show this -->
-      			<span class="nav-item" v-else>
+      			<span class="nav-item" v-if="isRetailer">
       				<a class="button" @click="goToDash()">
         				<span>Dashboard</span>
       				</a>
       			</span>
-      			<span class="nav-item">Or</span>
+      			<span class="nav-item" v-if="isRetailer">Or</span>
       			
       			<!-- Sign in -->
       			<span class="nav-item" v-if="!isAuthed">
       				<a class="button" @click="goToSignIn()">
-        				<span>Sign In</span>
+        				<span>Sign In / Sign Up</span>
       				</a>
       			</span>
       			
@@ -65,6 +65,9 @@ export default {
 		
 		isAuthed () {
 			return store.state.authentication.isAuthed
+		},
+		isRetailer () {
+			return store.state.authentication.isRetailer
 		}
 	},
 	methods: {

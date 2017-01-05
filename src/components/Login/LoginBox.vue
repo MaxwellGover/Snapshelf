@@ -4,17 +4,15 @@
 
 		<p>LOGIN</p>
 		
-		<label class="label">EMAIL</label>
+		    <label class="label">EMAIL</label>
         <p class="control">
           <input class="input is-medium" type="email" v-model="email">
         </p>
-        <small>This should be the email you provided Snapshelf when you applied.</small>
         
         <label class="label">PASSWORD</label>
         <p class="control">
           <input class="input is-medium" type="password" v-model="password">
         </p>
-        <small>This should be the password that was provided to you in your confirmation email.</small>
         
         <a class="button is-light" @click="signIn()">LOGIN</a>
 	
@@ -40,6 +38,7 @@ export default {
 		signIn () {
             
             // Sign in a user w/ email and password.
+            
             var email = this.email;
             var password = this.password; 
             
@@ -50,7 +49,7 @@ export default {
                 // ...
             });
         
-            // Push to either App or Retailer dashboard. 
+            // Push to home 
             
             router.push({ path: '/' });
         }
@@ -62,8 +61,8 @@ export default {
 <style scoped>
 
 .box {
-    width: 620px;
-    margin-top: 60px
+    width: 540px;
+    margin-top: 60px;
 }
 
 label {

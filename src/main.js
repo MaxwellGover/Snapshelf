@@ -15,7 +15,7 @@ Vue.use(Vuex)
 
 const routes = [
   { path: '/activate', component: Activate },
-  { path: '/dashboard', component: Dashboard },
+  { path: '/dashboard/:uid', name: 'dashboard', component: Dashboard },
   { path: '/login', component: Login }
 ]
 

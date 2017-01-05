@@ -4,7 +4,7 @@
     
     <div class="box">
         
-        <p>ACTIVATE YOUR ACCOUNT</p>
+        <p>ACTIVATE YOUR RETAILER ACCOUNT</p>
         
         <label class="label">RETAILER NAME</label>
         <p class="control">
@@ -44,7 +44,7 @@ import router from '../../main'
 
 export default {
     
-    // Allows Snapshelf to create accounts for verified retailers.
+    // This component allows retailers to active their Snapshelf account. 
     
     name: 'ActivateForm',
     data () {
@@ -56,24 +56,29 @@ export default {
             retailerLocation: '',
             retailerEmail: '',
             retailerPassword: '',
-            verifyPassword: ''
+            verifyPassword: '',
+            activationError: false
         };
     },
     methods: {
         signIn () {
             
-            // Activate a retailer w/ email and provided password.
+            // Activate a retailer w/ email and previously provided password.
+            
             var email = this.retailerEmail;
             var password = this.retailerPassword; 
             
             firebaseAuth.signInWithEmailAndPassword(email, password).catch(function(error) {
+                
                 // Handle Errors here.
+                this.activationError = true;
+                window.alert('Either email or password are not valid.');
                 var errorCode = error.code;
                 var errorMessage = error.message;
                 // ...
             });
             
-            // Checks for a user and dispatches an action. 
+            // Grabs activated user and stores information in Firebase.  
     
             firebaseAuth.onAuthStateChanged(user => {
               
@@ -85,11 +90,10 @@ export default {
                   isRetailer: true
               });
                 
+                // Push to retailer dashboard. 
+                router.push({ name: 'dashboard', params: { uid: user.uid }});
+            
             });
-            
-            // Push to either App or Retailer dashboard. 
-            
-            router.push({ path: '/' });
         }
     }
 };
@@ -112,7 +116,7 @@ export default {
 }
 
 .button {
-    margin-top: 40px;
+    margin-top: 60px;
     float: right;
 }
 

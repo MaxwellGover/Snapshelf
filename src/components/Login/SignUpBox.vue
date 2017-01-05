@@ -49,7 +49,7 @@ export default {
 		    newUserName: '',
 			newUserEmail: '',
 			newUserPassword: '',
-			confirmPassword: ''
+			confirmPassword: '',
 		}
 	},
 	methods: {

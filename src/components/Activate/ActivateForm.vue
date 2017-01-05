@@ -91,7 +91,7 @@ export default {
               });
                 
                 // Push to retailer dashboard. 
-                router.push({ name: 'dashboard', params: { uid: user.uid }});
+                router.push({ path: '/dashboard' });
             
             });
         }

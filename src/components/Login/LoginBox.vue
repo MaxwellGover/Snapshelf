@@ -57,7 +57,7 @@ export default {
                 var errorMessage = error.message;
                 // ...
             });
-
+            
             // Push to home 
             
             router.push({ path: '/' });

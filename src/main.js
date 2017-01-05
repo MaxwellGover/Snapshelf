@@ -8,6 +8,8 @@ import VueRouter from 'vue-router'
 
 import Activate from './views/Activate'
 import Dashboard from './views/Dashboard'
+import DashboardProducts from './components/Dashboard/DashboardProducts'
+import DashboardSettings from './components/Dashboard/DashboardSettings'
 import Login from './views/Login'
 
 Vue.use(VueRouter)
@@ -15,13 +17,18 @@ Vue.use(Vuex)
 
 const routes = [
   { path: '/activate', component: Activate },
-  { path: '/dashboard/:uid', name: 'dashboard', component: Dashboard },
+  { path: '/dashboard/:view', component: Dashboard, 
+    children: [ 
+      { path: 'products', component: DashboardProducts },
+      { path: 'settings', component: DashboardSettings }
+    ]
+  },
   { path: '/login', component: Login }
-]
+];
 
 const router = new VueRouter({
   routes // short for routes: routes
-})
+});
 
 export default router;
 

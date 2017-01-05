@@ -30,7 +30,7 @@ const authentication = {
 
                 // Do nothing.
 
-            } else if (firebase.database().ref('/users/' + user.uid).once('value').then((snapshot) => snapshot.val().isRetailer)) {
+            } else if (firebase.database().ref('/users/' + user.uid + '/isRetailer').once('value').then(snapshot => snapshot.val()) === true) {
 
                 context.commit('authUser', user);
                 

@@ -66,6 +66,9 @@ export default {
 		isAuthed () {
 			return store.state.authentication.isAuthed
 		},
+		authId () {
+			return store.state.authentication.authId	
+		},
 		isRetailer () {
 			return store.state.authentication.isRetailer
 		}
@@ -75,7 +78,7 @@ export default {
 			router.push({ path: '/login' })
 		},
 		goToDash () {
-			router.push({ path: '/dashboard' })
+			router.push({ path: '/dashboard/products'});
 		},
 		goToHome () {
 			router.push({ path: '/' })

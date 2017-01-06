@@ -53,12 +53,13 @@ export default {
             
             firebaseAuth.signInWithEmailAndPassword(email, password).catch(function(error) {
                 // Handle Errors here.
+                window.alert('Error');
                 var errorCode = error.code;
                 var errorMessage = error.message;
                 // ...
             });
             
-            // Push to home 
+            // Push to home where it should run checkUser functionality.
             
             router.push({ path: '/' });
         }

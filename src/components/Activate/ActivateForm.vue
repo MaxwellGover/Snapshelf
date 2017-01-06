@@ -91,7 +91,7 @@ export default {
               });
                 
                 // Push to retailer dashboard. 
-                router.push({ path: '/dashboard' });
+                router.push({ path: '/' });
             
             });
         }

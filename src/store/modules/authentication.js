@@ -25,12 +25,17 @@ const authentication = {
     },
     actions: {
         checkUser (context, user) {
+            
+            var retailerRef = 
+                firebase.database()
+                .ref('/users/' + user.uid + '/isRetailer/')
+                .once('value').then(snapshot => snapshot.val());
     
             if (!user.uid) {
 
                 // Do nothing.
 
-            } else if (firebase.database().ref('/users/' + user.uid + '/isRetailer').once('value').then(snapshot => snapshot.val()) === true) {
+            } else if (retailerRef !== false) {
 
                 context.commit('authUser', user);
                 

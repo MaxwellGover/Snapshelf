@@ -52,7 +52,6 @@
 
 <script>
 import store from '../../store/index'
-import firebase from 'firebase'
 import { firebaseAuth } from '../../firebase/constants'
 import router from '../../main'
 
@@ -71,7 +70,7 @@ export default {
 		},
 		isRetailer () {
 			return store.state.authentication.isRetailer
-		}
+		},
 	},
 	methods: {
 		goToSignIn () {

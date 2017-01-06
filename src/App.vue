@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-      <navigation></navigation>
+      <navigation v-show="show"></navigation>
       <router-view></router-view>
     </div>
 </template>
@@ -15,8 +15,13 @@ export default {
   components: {
     Navigation
   },
+  computed: {
+    show () {
+			return store.state.navigation.show
+		}
+  },
   created() {
-    
+  
     // Checks for a user and dispatches an action changing isAuthed state to true. 
     
     firebaseAuth.onAuthStateChanged(user => {

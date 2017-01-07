@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-      <navigation v-show="show"></navigation>
+      <navigation v-show="showNav"></navigation>
       <router-view></router-view>
     </div>
 </template>
@@ -15,13 +15,24 @@ export default {
   components: {
     Navigation
   },
+  watch: {
+    $route: function () {
+      // Check if given route is true, if it is then hide Nav. 
+        if (this.$route.path === "/dashboard/products" || this.$route.path === "/dashboard/settings") {
+            console.log("asjbfhasf")
+            store.commit('hideNav');
+            } else  {
+            store.commit('showNav');
+        }
+    }
+  },
   computed: {
-    show () {
-			return store.state.navigation.show
-		}
+    showNav () {    
+      return store.state.navigator.showNav
+    }
   },
   created() {
-  
+
     // Checks for a user and dispatches an action changing isAuthed state to true. 
     
     firebaseAuth.onAuthStateChanged(user => {

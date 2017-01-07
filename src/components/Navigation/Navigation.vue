@@ -70,7 +70,7 @@ export default {
 		},
 		isRetailer () {
 			return store.state.authentication.isRetailer
-		},
+		}
 	},
 	methods: {
 		goToSignIn () {

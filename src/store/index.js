@@ -1,14 +1,14 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import authentication from './modules/authentication'
-import navigation from './modules/navigation'
+import navigator from './modules/navigator'
 
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
     modules: {
         authentication,
-        navigation
+        navigator
     }
 })
 

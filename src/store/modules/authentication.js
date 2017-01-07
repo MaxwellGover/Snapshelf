@@ -4,12 +4,14 @@ const authentication = {
     state: {
         isAuthed: false,
         authId: '',
+        displayName: '',
         isRetailer: false
     },
     mutations: {
         authUser (state, user) {
             state.isAuthed = true;
-            state.authId = user.uid;
+            state.authId = user.user.uid;
+            state.displayName = user.displayName
         },
         notAuthed (state) {
             state.isAuthed = false;
@@ -28,10 +30,10 @@ const authentication = {
             
             var retailerRef = 
                 firebase.database()
-                .ref('/users/' + user.uid + '/isRetailer/')
+                .ref('/users/' + user.user.uid + '/isRetailer/')
                 .once('value').then(snapshot => snapshot.val());
     
-            if (!user.uid) {
+            if (!user.user.uid) {
 
                 // Do nothing.
 

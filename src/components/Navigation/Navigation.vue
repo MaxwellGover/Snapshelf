@@ -22,12 +22,9 @@
       			</span>
       			
       			<!-- If user is signed in show this -->
-      			<span class="nav-item" v-if="isRetailer">
-      				<a class="button" @click="goToDash()">
-        				<span>Dashboard</span>
-      				</a>
-      			</span>
-      			<span class="nav-item" v-if="isRetailer">Or</span>
+      			<a class="nav-item" v-if="isRetailer" @click="goToDash()">
+        			<span>Dashboard</span>
+      			</a>
       			
       			<!-- Sign in -->
       			<span class="nav-item" v-if="!isAuthed">
@@ -37,11 +34,10 @@
       			</span>
       			
       			<!-- Sign out -->
-      			<span class="nav-item" v-if="isAuthed">
-      				<a class="button" @click="signOut()">
-        				<span>Sign Out</span>
-      				</a>
-      			</span>
+      			<a class="nav-item" v-if="isAuthed" @click="signOut()">
+      				Sign Out
+      			</a>
+      			
   			</div>
 
   		</div>
@@ -52,7 +48,7 @@
 
 <script>
 import store from '../../store/index'
-import { firebaseAuth } from '../../firebase/constants'
+import { firebaseAuth, database } from '../../firebase/constants'
 import router from '../../main'
 
 export default {
@@ -70,6 +66,9 @@ export default {
 		},
 		isRetailer () {
 			return store.state.authentication.isRetailer
+		},
+		displayName () {
+			return store.state.authentication.displayName
 		}
 	},
 	methods: {
@@ -99,10 +98,16 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Julius+Sans+One');
+@import url('https://fonts.googleapis.com/css?family=Caveat');
+
+.nav {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
 
 .title {
-	font-family: 'Julius Sans One', sans-serif;
+	font-family: 'Caveat', cursive;
+	font-size: 32px;
 	margin-left: 10px
 }
 </style>

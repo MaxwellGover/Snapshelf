@@ -12,20 +12,15 @@
 	    	</div>
 	    	
 	    	<div class=nav-center>
-	    		<a class="nav-item">
-	      			<p>Dashboard</p>
-	    		</a>
+	      		<p class="title nav-item">Dashboard</p>
 	    	</div>
 	    		
 	    	<div class="nav-right">
-	   	 		<a class="nav-item" @click="backToHome()">
-	      			<p>Back to Snapshelf</p>
-	    		</a>
 	    		<a class="nav-item" @click="backToHome()">
 	    			<i class="fa fa-home fa-2x" aria-hidden="true"></i>
 	    		</a>
 	  		</div>
-	  		</div> 
+	  	
   		</div>
   	</nav>
 
@@ -51,6 +46,12 @@ export default {
 
 </script>
 
-<style>
-    
+<style scoped>
+@import url('https://fonts.googleapis.com/css?family=Caveat');
+
+.title {
+	font-family: 'Caveat', cursive;
+	font-size: 32px;
+}
+
 </style>

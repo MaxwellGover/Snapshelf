@@ -19,76 +19,47 @@ const authentication = {
             state.isRetailer = false,
             state.displayName = ''
         },
-        isRetailer (state) {
-            state.isRetailer = true
+        isRetailer (state, value) {
+            if (value.value === true) {
+                state.isRetailer = true
+            } else {
+                state.isRetailer = false
+            }
         },
-        isNotRetailer (state) {
-            state.isRetailer = false
-        },
-        getDisplayName (state, displayName) {
-            state.displayName = displayName   
+        getDisplayName (state, name) {
+            state.displayName = name.name
         }
     },
     actions: {
         checkUser (context, user) {
             
-            var retailerRef = 
-                firebase.database()
+            if (user.uid != null) {
+            
+            context.commit('authUser', user);
+            
+            // checkUser runs once when the app is initialized. 
+            
+            // Gets value of the user's isRetailer property from firebase. 
+            
+            firebase.database()
                 .ref('/users/' + user.uid + '/isRetailer/')
-                .once('value').then(snapshot => snapshot.val());
-                
+                .once('value').then(snapshot => context.commit('isRetailer', {
+                    value: snapshot.val()
+                }));
+        
             // Gets name of the current user from Firebase and will eventually store that in Vuex state.
             
-            /* var displayName =
-                firebase.database()
-                .ref('/users/' + user.uid)
-                .once('value').then(snapshot => snapshot.val().name); */
-    
-            if (!user.uid) {
-
-                // Do nothing.
-
-            } else if (retailerRef === true) {
-
-                context.commit('authUser', user);
-                
-                context.commit('isRetailer');
-
+            firebase.database()
+                .ref('/users/' + user.uid + '/name/')
+                .once('value').then(snapshot => context.commit('getDisplayName', {
+                    name: snapshot.val()
+                }));
             } else {
-                
-                context.commit('authUser', user);
-                
-                context.commit('isNotRetailer');
-            };
+                console.log('No user currently logged in');
+            }
         },
         signOut (context) {
             context.commit('notAuthed')
-        },
-        setRetailer (context, payload) {
-            
-            // Set retailer info in Firebase.
-            
-            var uid = payload.user.uid;
-            firebase.database().ref('/users/' + uid).set({
-                name: payload.name,
-                email: payload.email,
-                location: payload.retailerLocation,
-                isRetailer: payload.isRetailer,
-                isAdmin: payload.isAdmin
-            });  
-        
-        },
-        setNewUser (context, payload) {
-            
-            // Sets a user in firebase w/ a isRetailer value of false.
-            var user = payload.user;
-            
-            firebase.database().ref('/users/' + user.uid).set({
-                name: payload.userName,
-                email: payload.email,
-                isRetailer: payload.isRetailer,
-                isAdmin: payload.isAdmin
-            });
         }
     },
     getters: {}

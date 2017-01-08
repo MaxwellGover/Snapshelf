@@ -76,25 +76,22 @@ export default {
                 var errorCode = error.code;
                 var errorMessage = error.message;
                 // ...
-            });
-            
-            // Grabs activated user and stores information in Firebase.  
-    
-            firebaseAuth.onAuthStateChanged(user => {
+            }).then(() => {
               
-              store.dispatch('setRetailer', {
-                  user,
+              firebaseAuth.onAuthStateChanged(user => {
+                database.ref('/users/' + user.uid).set({
                   name: this.retailerName,
-                  email: this.retailerEmail,
-                  retailerLocation: this.retailerLocation,
+                  email: email,
+                  location: this.retailerLocation,
                   isRetailer: true,
                   isAdmin: false
-              });
-                
-                // Push to retailer dashboard. 
-                router.push({ path: '/' });
-            
+                });
+              });  
             });
+            
+            // Push to retailer dashboard. 
+            router.push({ path: '/' });
+            
         }
     }
 };

@@ -33,6 +33,10 @@
       				</a>
       			</span>
       			
+      			<a class="nav-item" v-if="isAuthed && !isRetailer">
+      				{{displayName}}
+      			</a>
+      			
       			<!-- Sign out -->
       			<a class="nav-item" v-if="isAuthed" @click="signOut()">
       				Sign Out

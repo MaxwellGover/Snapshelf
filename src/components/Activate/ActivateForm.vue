@@ -87,7 +87,8 @@ export default {
                   name: this.retailerName,
                   email: this.retailerEmail,
                   retailerLocation: this.retailerLocation,
-                  isRetailer: true
+                  isRetailer: true,
+                  isAdmin: false
               });
                 
                 // Push to retailer dashboard. 

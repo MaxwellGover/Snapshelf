@@ -1,4 +1,4 @@
-const navigator = {
+const navigation = {
     state: {
         showNav: true
     },
@@ -12,4 +12,4 @@ const navigator = {
     }
 };
 
-export default navigator;
+export default navigation;

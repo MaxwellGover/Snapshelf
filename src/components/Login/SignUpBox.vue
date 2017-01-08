@@ -7,7 +7,7 @@
 		
 		<label class="label">NAME *</label>
         <p class="control">
-          <input class="input is-medium" type="email" v-model="newUserName">
+          <input class="input is-medium" type="text" v-model="newUserName">
         </p>
 		
 		<label class="label">EMAIL *</label>
@@ -38,7 +38,7 @@
 
 <script>
 
-import { firebaseAuth } from '../../firebase/constants'
+import { firebaseAuth, database } from '../../firebase/constants'
 import store from '../../store/index'
 import router from '../../main'
 
@@ -46,7 +46,7 @@ export default {
 	name: 'SignUpBox',
 	data () {
 		return {
-		    newUserName: '',
+		  newUserName: '',
 			newUserEmail: '',
 			newUserPassword: '',
 			confirmPassword: '',
@@ -65,26 +65,35 @@ export default {
                 var errorCode = error.code;
                 var errorMessage = error.message;
                 // ...
-            });
-            
-            firebaseAuth.onAuthStateChanged(user => {
-            
-                // Stores new user in firebase.
-            
-                store.dispatch('setNewUser', {
-                    user,
-                    name: this.newUserName,
-                    email: this.newUserEmail,
-                    isRetailer: false
-                });
+            }).then(() => {
               
+              firebaseAuth.onAuthStateChanged(user => {
+                database.ref('/users/' + user.uid).set({
+                  name: this.newUserName,
+                  email: this.newUserEmail,
+                  isRetailer: false,
+                  isAdmin: false
+                });
+              });  
             });
-        
+
+              // Stores new user in firebase.
+              
+            /* firebaseAuth.onAuthStateChanged(function(user) {
+          
+              store.dispatch('setNewUser', {
+                  user,
+                  userName: this.newUserName,
+                  email: this.newUserEmail,
+                  isRetailer: false,
+                  isAdmin: false
+              });
+            }); */
             // Push to home 
             
             router.push({ path: '/' });
         }
-	}
+	  }
 }
 
 </script>

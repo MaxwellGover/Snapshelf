@@ -5,24 +5,28 @@ const authentication = {
         isAuthed: false,
         authId: '',
         displayName: '',
-        isRetailer: false
+        isRetailer: false,
+        isAdmin: false
     },
     mutations: {
         authUser (state, user) {
             state.isAuthed = true;
-            state.authId = user.user.uid;
-            state.displayName = user.displayName
+            state.authId = user.uid;
         },
         notAuthed (state) {
             state.isAuthed = false;
             state.authId = '';
-            state.isRetailer = false
+            state.isRetailer = false,
+            state.displayName = ''
         },
         isRetailer (state) {
             state.isRetailer = true
         },
         isNotRetailer (state) {
             state.isRetailer = false
+        },
+        getDisplayName (state, displayName) {
+            state.displayName = displayName   
         }
     },
     actions: {
@@ -30,14 +34,21 @@ const authentication = {
             
             var retailerRef = 
                 firebase.database()
-                .ref('/users/' + user.user.uid + '/isRetailer/')
+                .ref('/users/' + user.uid + '/isRetailer/')
                 .once('value').then(snapshot => snapshot.val());
+                
+            // Gets name of the current user from Firebase and will eventually store that in Vuex state.
+            
+            /* var displayName =
+                firebase.database()
+                .ref('/users/' + user.uid)
+                .once('value').then(snapshot => snapshot.val().name); */
     
-            if (!user.user.uid) {
+            if (!user.uid) {
 
                 // Do nothing.
 
-            } else if (retailerRef !== false) {
+            } else if (retailerRef === true) {
 
                 context.commit('authUser', user);
                 
@@ -62,20 +73,21 @@ const authentication = {
                 name: payload.name,
                 email: payload.email,
                 location: payload.retailerLocation,
-                isRetailer: payload.isRetailer
+                isRetailer: payload.isRetailer,
+                isAdmin: payload.isAdmin
             });  
         
         },
         setNewUser (context, payload) {
             
-            // Sets a user in firebase w/ a isRetailer value of false. 
+            // Sets a user in firebase w/ a isRetailer value of false.
+            var user = payload.user;
             
-            var uid = payload.user.uid;
-            
-            firebase.database().ref('/users/' + uid).set({
-                name: payload.name,
+            firebase.database().ref('/users/' + user.uid).set({
+                name: payload.userName,
                 email: payload.email,
-                isRetailer: payload.isRetailer
+                isRetailer: payload.isRetailer,
+                isAdmin: payload.isAdmin
             });
         }
     },

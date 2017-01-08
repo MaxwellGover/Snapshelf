@@ -77,18 +77,8 @@ export default {
               });  
             });
 
-              // Stores new user in firebase.
-              
-            /* firebaseAuth.onAuthStateChanged(function(user) {
-          
-              store.dispatch('setNewUser', {
-                  user,
-                  userName: this.newUserName,
-                  email: this.newUserEmail,
-                  isRetailer: false,
-                  isAdmin: false
-              });
-            }); */
+            
+            
             // Push to home 
             
             router.push({ path: '/' });

@@ -1,6 +1,7 @@
 <template>
     <div id="app">
       <navigation v-show="showNav"></navigation>
+      <ring-loader v-if="loading"></ring-loader>
       <router-view></router-view>
     </div>
 </template>
@@ -9,11 +10,14 @@
 import Navigation from './components/Navigation/Navigation'
 import { firebaseAuth, database } from './firebase/constants'
 import store from './store/index'
+// TODO: Figure out when/how to display this.
+import { RingLoader } from 'vue-spinner/dist/vue-spinner.min.js'
 
 export default {
   name: 'app',
   components: {
-    Navigation
+    Navigation,
+    RingLoader
   },
   watch: {
     $route: function () {
@@ -28,6 +32,9 @@ export default {
   computed: {
     showNav () {    
       return store.state.navigation.showNav
+    },
+    loading () {
+      return store.state.loading
     }
   },
   created() {
@@ -38,10 +45,8 @@ export default {
         } else  {
         store.commit('showNav');
     }
-    
     // Checks for a user and dispatches an action changing isAuthed state to true. 
     firebaseAuth.onAuthStateChanged(user => {
-            
       console.log(store.state.authentication);
       console.log(user);
       store.dispatch('checkUser', user)

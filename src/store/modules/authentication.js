@@ -28,7 +28,7 @@ const authentication = {
         },
         getDisplayName (state, name) {
             state.displayName = name.name
-        }
+        },
     },
     actions: {
         checkUser (context, user) {

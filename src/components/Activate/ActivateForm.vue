@@ -86,9 +86,11 @@ export default {
                   isRetailer: true,
                   isAdmin: false
                 });
-              });  
+                
+                store.dispatch('checkUser', user);
+                
+              });
             });
-            
             // Push to retailer dashboard. 
             router.push({ path: '/' });
             

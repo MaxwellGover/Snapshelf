@@ -10,16 +10,10 @@ const store = new Vuex.Store({
         loading: false
     },
     mutations: {
-        loading (state) {
-            state.loading = true
-        }
+        
     },
     actions: {
-        checkLoading (context) {
-            if (!authentication.state.displayName) {
-              context.commit('loading')
-            }
-        }
+    
     },
     modules: {
         authentication,

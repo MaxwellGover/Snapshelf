@@ -29,7 +29,7 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url('https://fonts.googleapis.com/css?family=Caveat');
 
 .sign-in {
 	display: flex;
@@ -40,7 +40,7 @@ export default {
 	flex-direction: column;
 }
 .header {
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'Caveat', cursive;
 	font-size: 28px;
 	margin-top: 80px;
 	margin-bottom: 20px;

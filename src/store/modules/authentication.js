@@ -17,7 +17,8 @@ const authentication = {
             state.isAuthed = false;
             state.authId = '';
             state.isRetailer = false,
-            state.displayName = ''
+            state.displayName = '',
+            state.isAdmin = false
         },
         isRetailer (state, value) {
             if (value.value === true) {
@@ -33,7 +34,7 @@ const authentication = {
     actions: {
         checkUser (context, user) {
             
-            if (user.uid != null) {
+            if (user.uid) {
             
             context.commit('authUser', user);
             

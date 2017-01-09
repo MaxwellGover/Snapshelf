@@ -72,25 +72,23 @@ export default {
                 
                 // Handle Errors here.
                 this.activationError = true;
-                window.alert('Either email or password are not valid.');
+                window.alert('No retailer with those credentials');
                 var errorCode = error.code;
                 var errorMessage = error.message;
                 // ...
             }).then(() => {
               
-              firebaseAuth.onAuthStateChanged(user => {
+                var user = firebaseAuth.currentUser;
                 database.ref('/users/' + user.uid).set({
                   name: this.retailerName,
-                  email: email,
+                  email: this.retailerEmail,
                   location: this.retailerLocation,
                   isRetailer: true,
                   isAdmin: false
                 });
-                
-                store.dispatch('checkUser', user);
-                
-              });
+          
             });
+            
             // Push to retailer dashboard. 
             router.push({ path: '/' });
             

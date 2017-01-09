@@ -15,7 +15,7 @@
     			<span class="nav-item" v-if="!isAuthed">
       				<a class="button">
         				<span class="icon">
-          					<div data-icon="ei-tag" data-size="s"></div>
+          					<i class="fa fa-tag fa-2x" aria-hidden="true"></i>
         				</span>
         				<span>Join Snapshelf</span>
       				</a>

@@ -27,7 +27,7 @@
         
         <a class="login-btn button is-light" @click="createNewUser()">
           <span class="icon">
-            <div data-icon="ei-lock" data-size="s"></div>
+            <i class="fa fa-lock fa-2x" aria-hidden="true"></i>
           </span>
           <span>LOGIN</span>
         </a>
@@ -54,36 +54,36 @@ export default {
 	},
 	methods: {
 		createNewUser () {
+		  
+      // TODO: Accounts in Firebase being overwritten if passwords are the same?  
+      
+      // Create a new user with email and password.
+      
+      var email = this.newUserEmail;
+      var password = this.newUserPassword; 
+      
+      firebaseAuth.createUserWithEmailAndPassword(email, password).catch(function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          // ...
+      }).then(() => {
+        
+          var user = firebaseAuth.currentUser;
+          database.ref('/users/' + user.uid).set({
+            name: this.newUserName,
+            email: this.newUserEmail,
+            isRetailer: false,
+            isAdmin: false
+          });
+        
+        });
+        
+        // Push to home 
             
-            // Create a new user with email and password.
-            
-            var email = this.newUserEmail;
-            var password = this.newUserPassword; 
-            
-            firebaseAuth.createUserWithEmailAndPassword(email, password).catch(function(error) {
-                // Handle Errors here.
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                // ...
-            }).then(() => {
-              
-              firebaseAuth.onAuthStateChanged(user => {
-                database.ref('/users/' + user.uid).set({
-                  name: this.newUserName,
-                  email: this.newUserEmail,
-                  isRetailer: false,
-                  isAdmin: false
-                });
-              });  
-            });
-
-            
-            
-            // Push to home 
-            
-            router.push({ path: '/' });
-        }
-	  }
+        router.push({ path: '/' });
+      }
+	 }
 }
 
 </script>

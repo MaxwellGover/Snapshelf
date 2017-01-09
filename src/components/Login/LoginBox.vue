@@ -4,7 +4,7 @@
 	  
 	      <div class="mini-flex">
 	        <p>Returning User</p>
-	        <div class="icon" data-icon="ei-like" data-size="s"></div>
+	        <i class="thumbs-up fa fa-thumbs-up fa-2x" aria-hidden="true"></i>
 	      </div>
 		
 		    <label class="label">EMAIL *</label>
@@ -20,7 +20,7 @@
         
         <a class="login-btn button is-light" @click="signIn()">
           <span class="icon">
-            <div data-icon="ei-lock" data-size="s"></div>
+            <i class="fa fa-lock fa-2x" aria-hidden="true"></i>
           </span>
           <span>LOGIN</span>
         </a>
@@ -40,7 +40,8 @@ export default {
 	data () {
 		return {
 			email: '',
-			password: ''
+			password: '',
+			error: false
 		}
 	},
 	methods: {
@@ -53,16 +54,20 @@ export default {
             
             firebaseAuth.signInWithEmailAndPassword(email, password).catch(function(error) {
                 // Handle Errors here.
-                window.alert('Error');
                 var errorCode = error.code;
                 var errorMessage = error.message;
+                window.alert('User does not exist');
+                this.error = true;
                 // ...
+            }).then (() => {
+                // If user exists, push to home where checkUser will run
+                if (this.error === true) {
+                  router.push({ path: '/login'});
+                } else if (this.error === false){
+                  router.push({ path: '/' });
+                }
             });
-            
-            // Push to home where it should run checkUser functionality.
-            
-            router.push({ path: '/' });
-        }
+    }
 	}
 }
 
@@ -96,6 +101,10 @@ input {
   font-size: 12px;
   text-decoration: underline;
   cursor: pointer;
+}
+
+.thumbs-up {
+  margin-left: 5px;
 }
 
 </style>

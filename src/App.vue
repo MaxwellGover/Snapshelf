@@ -45,11 +45,12 @@ export default {
         } else  {
         store.commit('showNav');
     }
-    // Checks for a user and dispatches an action changing isAuthed state to true. 
+    
+   // Checks for a user and dispatches an action changing isAuthed state to true. 
     firebaseAuth.onAuthStateChanged(user => {
       console.log(store.state.authentication);
       console.log(user);
-      store.dispatch('checkUser', user)
+      store.dispatch('checkUser', user);
     })
   }
 }

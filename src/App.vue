@@ -23,7 +23,7 @@ export default {
     $route: function () {
         var user = firebaseAuth.currentUser;
         // Check if given route is true, if it is then hide Nav. 
-        if (this.$route.path === "/dashboard/products" || this.$route.path === "/dashboard/settings"  || this.$route.path === `/account/${user.uid}`) {
+        if (user.uid && this.$route.path === "/dashboard/products" || this.$route.path === "/dashboard/settings"  || this.$route.path === `/account/${user.uid}`) {
             store.commit('hideNav');
             } else  {
             store.commit('showNav');
@@ -49,7 +49,7 @@ export default {
       
     // Prevents main nav from showing up on page refresh on any of below paths. 
     
-    if (this.$route.path === "/dashboard/products" || this.$route.path === "/dashboard/settings" || this.$route.path === `/account/${user.uid}`) {
+    if (user.uid && this.$route.path === "/dashboard/products" || this.$route.path === "/dashboard/settings" || this.$route.path === `/account/${user.uid}`) {
         store.commit('hideNav');
         } else  {
         store.commit('showNav');

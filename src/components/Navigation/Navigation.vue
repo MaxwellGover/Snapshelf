@@ -116,6 +116,5 @@ export default {
 .title {
 	font-family: 'Caveat', cursive;
 	font-size: 32px;
-	margin-left: 10px
 }
 </style>

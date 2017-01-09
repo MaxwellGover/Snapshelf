@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="container">
 		<div>
 			<p class="header">SIGN IN</p>
 		</div>
@@ -33,7 +33,7 @@ export default {
 
 .sign-in {
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-between;
 }
 .login-container {
 	display: flex;
@@ -44,6 +44,5 @@ export default {
 	font-size: 28px;
 	margin-top: 80px;
 	margin-bottom: 20px;
-	margin-left: 90px;
 }
 </style>

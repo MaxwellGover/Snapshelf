@@ -2,7 +2,7 @@
 	
 	<div class="box">
 	    
-	    <p>New Customer Account</p>
+	    <p class="header">New Customer Account</p>
 	    <small>Required fields *</small>
 		
 		<label class="label">NAME *</label>
@@ -89,22 +89,29 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 
 .box {
-    width: 500px;
+    width: 540px;
 }
 
 label {
-	margin-top: 20px
+	margin-top: 20px;
+	font-family: 'Roboto', sans-serif;
 }
 
 .button {
+  font-family: 'Roboto', sans-serif;
 	margin-top: 40px;
 	float: right;
 }
 
 small {
     color: #8f8f8f;
+}
+
+.header {
+  font-family: 'Roboto', sans-serif;
 }
 
 </style>

@@ -74,14 +74,16 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 
 .box {
-    width: 500px;
+    width: 540px;
     height: 502px;
 }
 
 label {
-	margin-top: 20px
+	margin-top: 20px;
+	font-family: 'Roboto', sans-serif;
 }
 
 input {
@@ -89,11 +91,13 @@ input {
 }
 
 .login-btn {
+  font-family: 'Roboto', sans-serif;
 	margin-top: 190px;
 	float: right;
 }
 
 .mini-flex {
+  font-family: 'Roboto', sans-serif;
   display: flex;
 }
 

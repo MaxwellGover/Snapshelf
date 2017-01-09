@@ -1,10 +1,10 @@
 <template>
 
-<div class="form-container">
+<div class="form-container container">
+    
+    <p class="header">Register a retailer account.</p>
     
     <div class="box">
-        
-        <p>ACTIVATE YOUR RETAILER ACCOUNT</p>
         
         <label class="label">RETAILER NAME</label>
         <p class="control">
@@ -99,13 +99,16 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css?family=Muli');
+@import url('https://fonts.googleapis.com/css?family=Caveat');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 
 .form-container {
-    font-family: 'Muli', sans-serif;
+    font-family: 'Roboto', sans-serif;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-content: center;
+    align-items: center;
 }
 
 .box {
@@ -120,5 +123,11 @@ export default {
 
 label {
     margin-top: 40px;
+}
+
+.header {
+    margin-top: 40px;
+    font-family: 'Caveat', cursive;
+	font-size: 28px;
 }
 </style>

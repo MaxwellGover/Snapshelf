@@ -21,8 +21,9 @@ export default {
   },
   watch: {
     $route: function () {
+        var user = firebaseAuth.currentUser;
         // Check if given route is true, if it is then hide Nav. 
-        if (this.$route.path === "/dashboard/products" || this.$route.path === "/dashboard/settings") {
+        if (this.$route.path === "/dashboard/products" || this.$route.path === "/dashboard/settings"  || this.$route.path === `/account/${user.uid}`) {
             store.commit('hideNav');
             } else  {
             store.commit('showNav');
@@ -37,23 +38,27 @@ export default {
       return store.state.loading
     }
   },
-  created() {
+  created () {
     
-    // Prevents main nav from showing up on page refresh from either of below paths. 
-    if (this.$route.path === "/dashboard/products" || this.$route.path === "/dashboard/settings") {
+   // Checks for a user and dispatches an action changing isAuthed state to true. 
+    
+    firebaseAuth.onAuthStateChanged((user) => {
+      console.log(store.state.authentication);
+      console.log(user);
+      store.dispatch('checkUser', user);
+      
+    // Prevents main nav from showing up on page refresh on any of below paths. 
+    
+    if (this.$route.path === "/dashboard/products" || this.$route.path === "/dashboard/settings" || this.$route.path === `/account/${user.uid}`) {
         store.commit('hideNav');
         } else  {
         store.commit('showNav');
     }
     
-   // Checks for a user and dispatches an action changing isAuthed state to true. 
-    firebaseAuth.onAuthStateChanged(user => {
-      console.log(store.state.authentication);
-      console.log(user);
-      store.dispatch('checkUser', user);
-    })
+      
+    });
   }
-}
+};
 
 </script>
 

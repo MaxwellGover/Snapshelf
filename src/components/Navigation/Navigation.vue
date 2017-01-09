@@ -33,7 +33,7 @@
       				</a>
       			</span>
       			
-      			<a class="nav-item" v-if="isAuthed && !isRetailer">
+      			<a class="nav-item" v-if="isAuthed && !isRetailer" @click="goToAccount">
       				{{displayName}}
       			</a>
       			
@@ -81,6 +81,10 @@ export default {
 		},
 		goToDash () {
 			router.push({ path: '/dashboard/products'});
+		},
+		goToAccount () {
+			var user = firebaseAuth.currentUser;
+			router.push({ path: '/account/' + user.uid})
 		},
 		goToHome () {
 			router.push({ path: '/' })

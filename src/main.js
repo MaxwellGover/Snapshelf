@@ -11,6 +11,7 @@ import Dashboard from './views/Dashboard'
 import DashboardProducts from './components/Dashboard/DashboardProducts'
 import DashboardSettings from './components/Dashboard/DashboardSettings'
 import Login from './views/Login'
+import UserAccount from './views/UserAccount'
 
 Vue.use(VueRouter)
 Vue.use(Vuex)
@@ -23,7 +24,8 @@ const routes = [
       { path: 'settings', component: DashboardSettings }
     ]
   },
-  { path: '/login', component: Login }
+  { path: '/login', component: Login },
+  { path: '/account/:displayName', component: UserAccount}
 ];
 
 const router = new VueRouter({

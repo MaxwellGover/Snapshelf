@@ -29,7 +29,12 @@
         </p>
         <small>This should be the password that was provided to you in your confirmation email.</small>
         
-        <a class="button is-light" @click="signIn()">CREATE ACCOUNT</a>
+        <a class="button is-light" @click="activate()">
+            <span class="icon">
+          	    <i class="fa fa-check fa-2x" aria-hidden="true"></i>
+        	</span>
+        	<span>Create Account</span>
+        </a>
         
     </div>
     
@@ -57,11 +62,10 @@ export default {
             retailerEmail: '',
             retailerPassword: '',
             verifyPassword: '',
-            activationError: false
         };
     },
     methods: {
-        signIn () {
+        activate () {
             
             // Activate a retailer w/ email and previously provided password.
             
@@ -71,8 +75,7 @@ export default {
             firebaseAuth.signInWithEmailAndPassword(email, password).catch(function(error) {
                 
                 // Handle Errors here.
-                this.activationError = true;
-                window.alert('No retailer with those credentials');
+                window.alert('Add this retailer in Firebase first.');
                 var errorCode = error.code;
                 var errorMessage = error.message;
                 // ...
@@ -113,7 +116,7 @@ export default {
 
 .box {
     width: 620px;
-    margin-top: 60px
+    margin-top: 40px
 }
 
 .button {

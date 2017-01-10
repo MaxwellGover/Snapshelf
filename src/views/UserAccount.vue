@@ -1,5 +1,11 @@
 <template>
-    <user-account-nav></user-account-nav>
+    <div>
+        <user-account-nav></user-account-nav>
+        
+        <div class="container">
+            <router-view></router-view>
+        </div>
+    </div>
 </template>
 
 <script>

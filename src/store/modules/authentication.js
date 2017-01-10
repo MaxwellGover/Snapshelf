@@ -5,9 +5,11 @@ const authentication = {
         isAuthed: false,
         authId: '',
         displayName: '',
+        email: '',
         isRetailer: false,
         isAdmin: false
     },
+    
     mutations: {
         authUser (state, user) {
             state.isAuthed = true;
@@ -30,7 +32,11 @@ const authentication = {
         getDisplayName (state, name) {
             state.displayName = name.name
         },
+        getEmail (state, email) {
+            state.email = email.email 
+        }
     },
+    
     actions: {
         checkUser (context, user) {
             
@@ -55,13 +61,20 @@ const authentication = {
                 .once('value').then(snapshot => context.commit('getDisplayName', {
                     name: snapshot.val()
                 }));
-            } else {
-                console.log('No user currently logged in');
+                
+            firebase.database()
+                .ref('/users/' + user.uid + '/email/')
+                .once('value').then(snapshot => context.commit('getEmail', {
+                    email: snapshot.val()
+                }));
             }
         },
+        
         signOut (context) {
-            context.commit('notAuthed')
+            context.commit('notAuthed');
         }
+    
+        
     },
     getters: {}
 };

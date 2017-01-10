@@ -12,6 +12,8 @@ import DashboardProducts from './components/Dashboard/DashboardProducts'
 import DashboardSettings from './components/Dashboard/DashboardSettings'
 import Login from './views/Login'
 import UserAccount from './views/UserAccount'
+import UserWishlist from './components/UserAccount/UserWishlist'
+import AccountSettings from './components/UserAccount/AccountSettings'
 
 Vue.use(VueRouter)
 Vue.use(Vuex)
@@ -20,12 +22,17 @@ const routes = [
   { path: '/activate', component: Activate },
   { path: '/dashboard/:view', component: Dashboard, 
     children: [ 
-      { path: 'products', component: DashboardProducts },
-      { path: 'settings', component: DashboardSettings }
+      { path: '', component: DashboardProducts },
+      { path: '/settings', component: DashboardSettings }
     ]
   },
   { path: '/login', component: Login },
-  { path: '/account/:displayName', component: UserAccount}
+  { path: '/account/:view', component: UserAccount,
+    children: [
+      { path: '', component: AccountSettings },
+      { path: 'wishlist', component: UserWishlist}
+    ]
+  }
 ];
 
 const router = new VueRouter({

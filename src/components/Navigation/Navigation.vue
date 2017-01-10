@@ -22,13 +22,13 @@
       			</span>
       			
       			<!-- If user is signed in show this -->
-      			<a class="nav-item" v-if="isRetailer" @click="goToDash()">
+      			<a class="nav-item" v-if="isRetailer" @click="goToDash">
         			<span>Dashboard</span>
       			</a>
       			
       			<!-- Sign in -->
       			<span class="nav-item" v-if="!isAuthed">
-      				<a class="button" @click="goToSignIn()">
+      				<a class="button" @click="goToSignIn">
         				<span>Sign In / Sign Up</span>
       				</a>
       			</span>
@@ -38,7 +38,7 @@
       			</a>
       			
       			<!-- Sign out -->
-      			<a class="nav-item" v-if="isAuthed" @click="signOut()">
+      			<a class="nav-item" v-if="isAuthed" @click="signOut">
       				Sign Out
       			</a>
       			
@@ -83,8 +83,7 @@ export default {
 			router.push({ path: '/dashboard/products'});
 		},
 		goToAccount () {
-			var user = firebaseAuth.currentUser;
-			router.push({ path: '/account/' + user.uid})
+			router.push({ path: '/account/settings'})
 		},
 		goToHome () {
 			router.push({ path: '/' })

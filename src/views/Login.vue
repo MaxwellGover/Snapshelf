@@ -33,7 +33,7 @@ export default {
 
 .sign-in {
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-around;
 }
 .login-container {
 	display: flex;
@@ -42,7 +42,8 @@ export default {
 .header {
 	font-family: 'Caveat', cursive;
 	font-size: 28px;
-	margin-top: 80px;
+	margin-top: 20px;
+	margin-left: 40px;
 	margin-bottom: 20px;
 }
 </style>

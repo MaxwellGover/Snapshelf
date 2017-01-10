@@ -52,12 +52,11 @@ export default {
             var email = this.email;
             var password = this.password; 
             
-            firebaseAuth.signInWithEmailAndPassword(email, password).catch(function(error) {
+            firebaseAuth.signInWithEmailAndPassword(email, password).catch(error => {
                 // Handle Errors here.
                 var errorCode = error.code;
                 var errorMessage = error.message;
                 window.alert('User does not exist');
-                this.error = true;
                 // ...
             }).then (() => {
                 // If user exists, push to home where checkUser will run

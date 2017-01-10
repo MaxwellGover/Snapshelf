@@ -21,9 +21,9 @@ export default {
   },
   watch: {
     $route: function () {
-        var user = firebaseAuth.currentUser;
+
         // Check if given route is true, if it is then hide Nav. 
-        if (user.uid && this.$route.path === "/dashboard/products" || this.$route.path === "/dashboard/settings"  || this.$route.path === `/account/${user.uid}`) {
+        if (this.$route.path === "/dashboard/products" || this.$route.path === "/dashboard/settings"  || this.$route.path === "/account/settings" || this.$route.path === "/account/wishlist") {
             store.commit('hideNav');
             } else  {
             store.commit('showNav');
@@ -49,7 +49,7 @@ export default {
       
     // Prevents main nav from showing up on page refresh on any of below paths. 
     
-    if (user.uid && this.$route.path === "/dashboard/products" || this.$route.path === "/dashboard/settings" || this.$route.path === `/account/${user.uid}`) {
+    if (this.$route.path === "/dashboard/products" || this.$route.path === "/dashboard/settings" || this.$route.path === "/account/settings" || this.$route.path === "/account/wishlist") {
         store.commit('hideNav');
         } else  {
         store.commit('showNav');
@@ -64,7 +64,6 @@ export default {
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;

@@ -3,10 +3,10 @@
 	<nav class="nav">
 		<div class="container">
 	  		<div class="nav-left">
-	  			<a class="nav-item">
-	      			<p>Settings</p>
+	  			<a class="nav-item" @click="goToSettings">
+	      			<p>Account Details</p>
 	    		</a>
-	    		<a class="nav-item">
+	    		<a class="nav-item" @click="goToWishList">
 	      			<p>Wishlist</p>
 	    		</a>
 	    	</div>
@@ -28,15 +28,20 @@
 
 <script>
 import router from '../../main'
+import Vue from 'vue'
+import VueFire from 'vuefire'
+
+// explicit installation required in module environments
+Vue.use(VueFire)
 
 export default {
     name: 'UserAccountNav',
     methods: {
     	goToWishList () {
-    		router.push({});
+    		router.push({ path: '/account/wishlist'});
     	},
     	goToSettings () {
-    		router.push({});
+    		router.push({ path: '/account/settings'});
     	},
     	backToHome () {
     		router.push({ path: '/'});

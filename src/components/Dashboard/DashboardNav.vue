@@ -3,10 +3,10 @@
 	<nav class="nav">
 		<div class="container">
 	  		<div class="nav-left">
-	  			<a class="nav-item">
+	  			<a class="nav-item" @click="goToProducts">
 	      			<p>Products</p>
 	    		</a>
-	    		<a class="nav-item">
+	    		<a class="nav-item" @click="goToSettings">
 	      			<p>Settings</p>
 	    		</a>
 	    	</div>
@@ -16,7 +16,7 @@
 	    	</div>
 	    		
 	    	<div class="nav-right">
-	    		<a class="nav-item" @click="backToHome()">
+	    		<a class="nav-item" @click="backToHome">
 	    			<i class="fa fa-home fa-2x" aria-hidden="true"></i>
 	    		</a>
 	  		</div>

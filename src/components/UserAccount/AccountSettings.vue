@@ -1,4 +1,4 @@
-<template>
+<template v-if="user">
 
 <div class="container">
     
@@ -6,17 +6,27 @@
     
     <div class="box">
        
-       <div>
+       <div v-if="isEditing === false">
          <p>Name: {{user.displayName}}</p>
          <p>Email: {{user.email}}</p><br />
          <p class="control">
-            <a class="button">
+            <a class="button" @click="editDetails()">
                 <span class="icon">
                     <i class="fa fa-pencil fa-2x" aria-hidden="true"></i>
                 </span>
                 <span>Edit</span>
             </a>
        </div> 
+       
+        <div v-else>
+            <label class="label">Name</label>
+            <p class="control">
+              <input class="input" type="text" v-model="newName">
+            </p>
+            
+            <a class="save-btn button" @click="saveChanges">Save Changes</a>
+            <a class="save-btn button" @click="cancelChanges">Cancel</a>
+       </div>
        
     </div>
     
@@ -35,14 +45,30 @@ Vue.use(VueFire)
 
 export default {
     name: 'AccountSettings',
+    props: ['user'],
     data () {
         return {
-            isEditing: false
+            isEditing: false,
+            oldName: this.user.displayName,
+            newName: this.user.displayName,
         }
     },
-    computed: {
-        user () {
-            return store.state.authentication.user
+    methods: {
+        editDetails () {
+            return this.isEditing = true
+        },
+        saveChanges () {
+            store.dispatch('updateAccountDetails', {
+                name: this.newName,
+                email: this.user.email,
+                isRetailer: this.user.isRetailer,
+                isAdmin: this.user.isAdmin
+            }).then(() => this.isEditing = false)
+        },
+        cancelChanges () {
+            this.oldName = this.user.displayName;
+            this.newName = this.oldName;
+            return this.isEditing = false
         }
     }
 };
@@ -59,4 +85,18 @@ export default {
 	margin-top: 40px;
 	margin-bottom: 20px;
 }
+
+.control {
+    width: 40%;
+}
+
+.box {
+    box-shadow: none;
+    border-radius: 0px;
+}
+
+.save-btn {
+    margin-top: 10px;
+}
+
 </style>

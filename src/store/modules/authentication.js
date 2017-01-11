@@ -5,7 +5,7 @@ const authentication = {
         user: {
             isAuthed: false,
             authId: '',
-            displayName: '',
+            displayName: null,
             email: '',
             isRetailer: false,
             isAdmin: false
@@ -28,6 +28,9 @@ const authentication = {
            state.user.isRetailer = userInfo.isRetailer,
            state.user.email = userInfo.email,
            state.user.isAdmin = userInfo.isAdmin
+        },
+        updateDisplayName (state, userInfo) {
+            state.user.displayName = userInfo.name
         }
     },
     actions: {
@@ -56,9 +59,21 @@ const authentication = {
         
         signOut (context) {
             context.commit('notAuthed');
-        }
+        },
     
-        
+        updateAccountDetails (context, userInfo) {
+            
+            let user = firebase.auth().currentUser;
+            
+            firebase.database().ref('/users/' + user.uid).set({
+                name: userInfo.name,
+                email: userInfo.email,
+                isRetailer: userInfo.isRetailer,
+                isAdmin: userInfo.isAdmin
+            }).then(() => {
+                context.commit('updateDisplayName', userInfo) 
+            });
+        }
     },
     getters: {}
 };

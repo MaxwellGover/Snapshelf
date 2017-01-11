@@ -14,13 +14,24 @@
 	    	<div class=nav-center>
 	      		<p class="title nav-item">Dashboard</p>
 	    	</div>
-	    		
+	    	
 	    	<div class="nav-right">
-	    		<a class="nav-item" @click="backToHome">
-	    			<i class="fa fa-home fa-2x" aria-hidden="true"></i>
-	    		</a>
+	    	
+		    	<span class="nav-item">
+	      			<a class="home button" @click="backToHome">
+						<span class="icon">
+	  						<i class="fa fa-home fa-2x" aria-hidden="true"></i>
+						</span>
+					</a>
+		      	</span>
+		  		
+		  		<!-- Sign out -->
+	      		<a class="nav-item" @click="signOut">
+	      			Sign Out
+	      		</a>
+	  		
 	  		</div>
-	  	
+  		
   		</div>
   	</nav>
 
@@ -28,6 +39,8 @@
 
 <script>
 import router from '../../main'
+import firebase from 'firebase'
+import store from '../../store/index'
 
 export default {
     name: 'DashboardNav',
@@ -40,7 +53,19 @@ export default {
     	},
     	backToHome () {
     		router.push({ path: '/'});
-    	}
+    	},
+    	signOut () {
+
+			// Dispatches action that signs out current user and changes isAuthed to false. 
+
+			firebase.auth().signOut().then(() => {
+  				store.dispatch('signOut');
+
+  				router.push({ path: '/' })
+			}, function(error) {
+  				// An error happened.
+			});
+		}
     }
 };
 
@@ -52,6 +77,12 @@ export default {
 .title {
 	font-family: 'Caveat', cursive;
 	font-size: 32px;
+}
+
+.home {
+	border-left: none;
+	border-top: none;
+	border-bottom: none;	
 }
 
 </style>

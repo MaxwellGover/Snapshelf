@@ -1,9 +1,10 @@
 <template>
-    <div>
+    
+    <div class="container">
         <p class="header">Products</p>
         <p class="header-text">These product images have been successfully edited and are ready to post to Snapshelf!</p>
         
-        <div class="box container">
+        <div class="box">
             
             <div class="content">
                 <p>No new products available to post...yet

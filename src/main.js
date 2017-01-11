@@ -14,12 +14,16 @@ import Login from './views/Login'
 import UserAccount from './views/UserAccount'
 import UserWishlist from './components/UserAccount/UserWishlist'
 import AccountSettings from './components/UserAccount/AccountSettings'
+import Home from './views/Home'
+import ProductProfile from './views/ProductProfile'
 
 Vue.use(VueRouter)
 Vue.use(Vuex)
 
 const routes = [
+  { path: '/', component: Home},
   { path: '/activate', component: Activate },
+  { path: '/product/:productId', component: ProductProfile },
   { path: '/dashboard/:view', component: Dashboard, 
     children: [ 
       { path: '', component: DashboardProducts },

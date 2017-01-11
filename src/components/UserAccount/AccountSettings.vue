@@ -4,8 +4,19 @@
     
     <p class="header">Account Details</p>
     
-    <div class="box">
-        
+    <div class="box container">
+       
+       <div>
+         <p>Name: {{user.displayName}}</p>
+         <p>Email: {{user.email}}</p><br />
+         <p class="control">
+            <a class="button">
+                <span class="icon">
+                    <i class="fa fa-pencil fa-2x" aria-hidden="true"></i>
+                </span>
+                <span>Edit</span>
+            </a>
+       </div> 
        
     </div>
     
@@ -26,7 +37,7 @@ export default {
     name: 'AccountSettings',
     computed: {
         user () {
-            return firebaseAuth.currentUser;
+            return store.state.authentication
         }
     }
 };

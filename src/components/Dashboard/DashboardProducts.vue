@@ -1,13 +1,18 @@
 <template>
     <div>
         <p class="header">Products</p>
-        
-        <div class="notification">
-            These product images have been successfully edited and are ready to post to Snapshelf!
-        </div>
+        <p class="header-text">These product images have been successfully edited and are ready to post to Snapshelf!</p>
         
         <div class="box container">
-            No new products available to post. Check back later.
+            
+            <div class="content">
+                <p>No new products available to post...yet
+                <span><i class="fa fa-smile-o fa-2x" aria-hidden="true"></i></span><br />
+                </p>
+                <p>Use the Snapshelf app to take and submit product images for editing.</p>
+                <p><b>NOTE:</b> Turnaround times for images to be edited and returned can be up to 24 hrs.</p>
+            </div>
+     
         </div>
     </div>	
 </template>
@@ -27,20 +32,21 @@ export default {
 .header {
     font-family: 'Caveat', cursive;
 	font-size: 28px;
-	margin-top: 40px;
-	margin-bottom: 20px;
+	margin-top: 20px;
+	margin-bottom: 0px;
 }
 
 .box {
-
-    
+    margin-top: 40px;
 }
 
-.notification {
+.header-text {
     font-family: 'Roboto', sans-serif;
     color: #8f8f8f;
-    margin-bottom: 60px;
-    background-color: #fff;
-    width: 25%;
+    font-size: 14px;
+}
+
+.content {
+    color: #8f8f8f;
 }
 </style>

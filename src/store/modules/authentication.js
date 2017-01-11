@@ -60,13 +60,13 @@ const authentication = {
                 .ref('/users/' + user.uid + '/name/')
                 .once('value').then(snapshot => context.commit('getDisplayName', {
                     name: snapshot.val()
-                }));
-                
+                }))
+           
             firebase.database()
                 .ref('/users/' + user.uid + '/email/')
                 .once('value').then(snapshot => context.commit('getEmail', {
                     email: snapshot.val()
-                }));
+                }))
             }
         },
         

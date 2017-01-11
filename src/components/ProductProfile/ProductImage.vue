@@ -1,7 +1,7 @@
 <template>
     
-    <div class="main-image" style="border: 1px solid red">
-       <p>I am an image</p> 
+    <div class="main-image">
+       
     </div>
     
 </template>

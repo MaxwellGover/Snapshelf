@@ -54,8 +54,6 @@ export default {
 	},
 	methods: {
 		createNewUser () {
-		  
-      // TODO: Accounts in Firebase being overwritten if passwords are the same?  
       
       // Create a new user with email and password.
       

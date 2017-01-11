@@ -1,10 +1,10 @@
 <template>
 
-<div>
+<div class="container">
     
     <p class="header">Account Details</p>
     
-    <div class="box container">
+    <div class="box">
        
        <div>
          <p>Name: {{user.displayName}}</p>
@@ -35,9 +35,14 @@ Vue.use(VueFire)
 
 export default {
     name: 'AccountSettings',
+    data () {
+        return {
+            isEditing: false
+        }
+    },
     computed: {
         user () {
-            return store.state.authentication
+            return store.state.authentication.user
         }
     }
 };

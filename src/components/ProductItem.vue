@@ -13,7 +13,8 @@
             
             <div class="item-footer">
                 <p class="price">$100</p>
-                <i class="fa fa-heart-o fa-3x" aria-hidden="true"></i>
+                <i class="star-clicked fa fa-star fa-3x" aria-hidden="true" @click="toggleProductSaved()" v-if="productSaved"></i>
+                <i class="fa fa-star-o fa-3x" aria-hidden="true" @click="toggleProductSaved()" v-else></i>
             </div>
         </div>
         
@@ -24,7 +25,17 @@
 <script>
 
 export default {
-    name: 'ProductItem'
+    name: 'ProductItem',
+    data () {
+        return {
+            productSaved: false
+        }
+    },
+    methods: {
+        toggleProductSaved () {
+            return this.productSaved = !this.productSaved;
+        }
+    }
 };
 
 </script>
@@ -58,6 +69,10 @@ img {
 
 .fa {
     cursor: pointer;
+}
+
+.heart-clicked {
+    color: red;
 }
 
 </style>

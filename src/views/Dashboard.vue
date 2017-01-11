@@ -3,9 +3,7 @@
 		<dashboard-nav></dashboard-nav>
 		
 		<!-- Will display product and settings components -->
-		<div class="container">
-			<router-view></router-view>
-		</div>
+		<router-view></router-view>
 	</div>
 </template>
 

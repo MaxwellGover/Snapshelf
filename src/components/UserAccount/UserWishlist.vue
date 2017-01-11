@@ -1,6 +1,6 @@
 <template>
 
-<div>
+<div class="container">
     
     <p class="header">Wishlist</p>
     
@@ -14,8 +14,7 @@
 </template>
 
 <script>
-import { firebaseAuth, database } from '../../firebase/constants'
-import store from '../../store/index'
+
 
 export default {
     name: 'UserWishlist',
@@ -27,5 +26,12 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css?family=Caveat');
 @import url('https://fonts.googleapis.com/css?family=Roboto');
+
+.header {
+    margin-top: 40px;
+    font-family: 'Caveat', cursive;
+	font-size: 32px;
+	margin-bottom: 20px;
+}
 
 </style>

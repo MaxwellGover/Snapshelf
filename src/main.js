@@ -24,14 +24,14 @@ const routes = [
   { path: '/', component: Home},
   { path: '/activate', component: Activate },
   { path: '/product/:productId', component: ProductProfile },
-  { path: '/dashboard/:view', component: Dashboard, 
+  { path: '/dashboard', component: Dashboard, 
     children: [ 
       { path: '', component: DashboardProducts },
-      { path: '/settings', component: DashboardSettings }
+      { path: 'settings', component: DashboardSettings }
     ]
   },
   { path: '/login', component: Login },
-  { path: '/account/:view', component: UserAccount,
+  { path: '/account', component: UserAccount,
     children: [
       { path: '', component: AccountSettings },
       { path: 'wishlist', component: UserWishlist}

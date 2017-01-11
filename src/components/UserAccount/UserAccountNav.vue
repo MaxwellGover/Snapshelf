@@ -28,11 +28,6 @@
 
 <script>
 import router from '../../main'
-import Vue from 'vue'
-import VueFire from 'vuefire'
-
-// explicit installation required in module environments
-Vue.use(VueFire)
 
 export default {
     name: 'UserAccountNav',
@@ -41,7 +36,7 @@ export default {
     		router.push({ path: '/account/wishlist'});
     	},
     	goToSettings () {
-    		router.push({ path: '/account/settings'});
+    		router.push({ path: '/account'});
     	},
     	backToHome () {
     		router.push({ path: '/'});

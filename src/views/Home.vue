@@ -135,4 +135,8 @@ export default {
 	font-size: 32px; 
 	margin-bottom: 40px;
 }
+
+a:hover {
+    color: #000;
+}
 </style>

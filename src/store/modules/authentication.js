@@ -8,7 +8,8 @@ const authentication = {
             displayName: null,
             email: '',
             isRetailer: false,
-            isAdmin: false
+            isAdmin: false,
+            location: ''
         }
     },
     mutations: {
@@ -28,6 +29,7 @@ const authentication = {
            state.user.isRetailer = userInfo.isRetailer,
            state.user.email = userInfo.email,
            state.user.isAdmin = userInfo.isAdmin
+           state.user.location = userInfo.location
         },
         updateDisplayName (state, userInfo) {
             state.user.displayName = userInfo.name
@@ -51,7 +53,8 @@ const authentication = {
                         isRetailer: dbUser.isRetailer,
                         displayName: dbUser.name,
                         email: dbUser.email,
-                        isAdmin: dbUser.isAdmin
+                        isAdmin: dbUser.isAdmin,
+                        location: dbUser.location
                     })
                 })
             }
@@ -69,7 +72,8 @@ const authentication = {
                 name: userInfo.name,
                 email: userInfo.email,
                 isRetailer: userInfo.isRetailer,
-                isAdmin: userInfo.isAdmin
+                isAdmin: userInfo.isAdmin,
+                location: userInfo.location
             }).then(() => {
                 context.commit('updateDisplayName', userInfo) 
             });

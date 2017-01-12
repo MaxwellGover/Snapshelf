@@ -3,7 +3,7 @@
         <user-account-nav></user-account-nav>
         
         
-        <router-view :user="user"></router-view>
+        <router-view :dbUser="user"></router-view>
     </div>
 </template>
 

@@ -1,23 +1,25 @@
-<template>
+<template v-if="user.location">
 	<div>
 		<dashboard-nav></dashboard-nav>
 		
 		<!-- Will display product and settings components -->
-		<router-view></router-view>
+		<router-view :user="user"></router-view>
 	</div>
 </template>
 
 <script>
 import DashboardNav from '../components/Dashboard/DashboardNav'
-import DashboardProducts from '../components/Dashboard/DashboardProducts'
-import DashboardSettings from '../components/Dashboard/DashboardSettings'
+import store from '../store/index'
 
 export default {
     name: 'Dashboard',
     components: {
-    	DashboardNav,
-    	DashboardProducts,
-    	DashboardSettings
+    	DashboardNav
+    },
+    computed: {
+        user () {
+            return store.state.authentication.user
+        }
     }
 };
 

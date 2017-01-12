@@ -49,7 +49,7 @@ export default {
     		router.push({ path: '/dashboard/settings'});
     	},
     	goToProducts () {
-    		router.push({ path: '/dashboard/products'});
+    		router.push({ path: '/dashboard'});
     	},
     	backToHome () {
     		router.push({ path: '/'});

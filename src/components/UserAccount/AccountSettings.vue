@@ -1,4 +1,4 @@
-<template v-if="user">
+<template v-if="dbUser">
 
 <div class="container">
     
@@ -7,21 +7,27 @@
     <div class="box">
        
        <div v-if="isEditing === false">
-         <p>Name: {{user.displayName}}</p>
-         <p>Email: {{user.email}}</p><br />
-         <p class="control">
-            <a class="button" @click="editDetails()">
-                <span class="icon">
-                    <i class="fa fa-pencil fa-2x" aria-hidden="true"></i>
-                </span>
-                <span>Edit</span>
-            </a>
+            <p>Name: {{dbUser.displayName}}</p>
+            <p>Email: {{dbUser.email}}</p><br />
+            <p class="control">
+                <a class="button" @click="editDetails()">
+                    <span class="icon">
+                        <i class="fa fa-pencil fa-2x" aria-hidden="true"></i>
+                    </span>
+                    <span>Edit</span>
+                </a>
+            </p>
        </div> 
        
         <div v-else>
             <label class="label">Name</label>
             <p class="control">
               <input class="input" type="text" v-model="newName">
+            </p>
+            
+            <label class="label">Email</label>
+            <p class="control">
+              <input class="input" type="text" v-model="newEmail">
             </p>
             
             <a class="save-btn button" @click="saveChanges">Save Changes</a>
@@ -35,22 +41,28 @@
 </template>
 
 <script>
-import { firebaseAuth, database } from '../../firebase/constants'
+
+// TODO: Error code not running when email already exists. 
+
+import firebase from 'firebase'
 import store from '../../store/index'
 import Vue from 'vue'
 import VueFire from 'vuefire'
 
-// explicit installation required in module environments
 Vue.use(VueFire)
 
 export default {
     name: 'AccountSettings',
-    props: ['user'],
+    props: {
+        dbUser: Object
+    },
     data () {
         return {
             isEditing: false,
-            oldName: this.user.displayName,
-            newName: this.user.displayName,
+            oldName: this.dbUser.displayName,
+            newName: this.dbUser.displayName,
+            oldEmail: this.dbUser.email,
+            newEmail: this.dbUser.email
         }
     },
     methods: {
@@ -58,15 +70,28 @@ export default {
             return this.isEditing = true
         },
         saveChanges () {
+            
+            const user = firebase.auth().currentUser;
+
+            user.updateEmail(this.newEmail).then(() => {
+                // Update successful.
+                window.alert("Your email his been successfully updated to " + this.newEmail)
+            }, (error) => {
+                // An error happened.
+                window.alert("This email already exists");
+                return this.newEmail = this.oldEmail;
+            });
+            
             store.dispatch('updateAccountDetails', {
                 name: this.newName,
-                email: this.user.email,
-                isRetailer: this.user.isRetailer,
-                isAdmin: this.user.isAdmin
+                email: this.newEmail,
+                isRetailer: this.dbUser.isRetailer,
+                isAdmin: this.dbUser.isAdmin,
+                location: this.dbUser.location
             }).then(() => this.isEditing = false)
         },
         cancelChanges () {
-            this.oldName = this.user.displayName;
+            this.oldName = this.dbUser.displayName;
             this.newName = this.oldName;
             return this.isEditing = false
         }

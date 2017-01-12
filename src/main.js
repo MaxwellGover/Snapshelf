@@ -16,12 +16,19 @@ import UserWishlist from './components/UserAccount/UserWishlist'
 import AccountSettings from './components/UserAccount/AccountSettings'
 import Home from './views/Home'
 import ProductProfile from './views/ProductProfile'
+import CoatsDisplay from './components/Home/CoatsDisplay'
+import NewItems from './components/Home/NewItems'
 
 Vue.use(VueRouter)
 Vue.use(Vuex)
 
 const routes = [
-  { path: '/', component: Home},
+  { path: '/', component: Home,
+    children: [
+      { path: '', component: NewItems },
+      { path: 'coats', component: CoatsDisplay } 
+    ]
+  },
   { path: '/activate', component: Activate },
   { path: '/product/:productId', component: ProductProfile },
   { path: '/dashboard', component: Dashboard, 

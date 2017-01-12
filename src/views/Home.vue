@@ -54,11 +54,7 @@
     
             </aside>
             
-            <!-- Move this to it's own component -->
-            <div class="box">
-                <h1 class="new-items-title">New Items</h1>
-                <product-item></product-item>
-            </div>
+            <router-view></router-view>
         
         </div>
     
@@ -67,12 +63,12 @@
 </template>
 
 <script>
-import ProductItem from '../components/ProductItem'
+import router from '../main'
 
 export default {
     name: 'Home',
     components: {
-        ProductItem
+       
     },
     data () {
         return {
@@ -82,6 +78,7 @@ export default {
     },
     methods: {
         toggleCoats () {
+            router.push({ path: '/coats'});
             return this.coatsDropdown = !this.coatsDropdown;
         },
         toggleJackets () {

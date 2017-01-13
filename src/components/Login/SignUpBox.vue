@@ -7,35 +7,26 @@
 		
 		<label class="label">NAME *</label>
         <p class="control">
-          <input class="input is-medium" type="text" v-model="newUserName">
+          <input v-validate data-vv-rules="required" :class="{'input': true, 'is-danger': errors.has('name') }" name="name" type="text" v-model="newUserName">
+          <span v-show="errors.has('password')" class="help is-danger">{{ errors.first('name') }}</span>
         </p>
 		
 		<label class="label">EMAIL *</label>
-        <p class="control" v-if="emailValid">
-          <input class="input is-medium" type="email" v-model="newUserEmail">
-        </p>
-        <p class="control" v-else>
-          <input class="input is-medium is-danger" type="email" v-model="newUserEmail">
-          <small class="help">Email is not valid.</small>
+        <p class="control">
+          <input v-validate data-vv-rules="required|email" :class="{'input': true, 'is-danger': errors.has('email') }" name="email" type="text" v-model="newUserEmail">
+          <span v-show="errors.has('email')" class="help is-danger">{{ errors.first('email') }}</span>
         </p>
         
         <label class="label">PASSWORD *</label>
-        <p class="control" v-if="passwordsMatch">
-          <input class="input is-medium" type="password" v-model="newUserPassword" v-if="passwordsMatch">
-        </p>
-        <p class="control" v-else>
-          <input class="input is-medium is-danger" type="password" v-model="newUserPassword">
-          <small class="help" v-if="newUserPassword.length <= 6">Passwords should be longer than 6 characters.</small>
-          <small class="help" v-if="newUserPassword.length >= 6">Passwords don't match</small>
+        <p class="control">
+          <input v-validate data-vv-rules="required|min:6" :class="{'input': true, 'is-danger': errors.has('password') }" name="password" type="password" v-model="newUserPassword">
+          <span v-show="errors.has('password')" class="help is-danger">{{ errors.first('password') }}</span>
         </p>
         
         <label class="label">CONFIRM PASSWORD *</label>
-        <p class="control" v-if="passwordsMatch">
-          <input class="input is-medium" type="password" v-model="confirmPassword">
-        </p>
-        <p class="control" v-else>
-          <input class="input is-medium is-danger" type="password" v-model="confirmPassword">
-          <small class="help">Passwords don't match</small>
+        <p class="control">
+          <input v-validate data-vv-rules="required|min:6" :class="{'input': true, 'is-danger': errors.has('confirm password') }" name="confirm password" type="password" v-model="confirmPassword">
+          <span v-show="errors.has('confirm password')" class="help is-danger">{{ errors.first('confirm password') }}</span>
         </p>
         
         <a class="login-btn button is-light" @click="createNewUser()">
@@ -51,9 +42,13 @@
 
 <script>
 
+import Vue from 'vue';
+import VeeValidate from 'vee-validate';
 import { firebaseAuth, database } from '../../firebase/constants'
 import store from '../../store/index'
 import router from '../../main'
+
+Vue.use(VeeValidate);
 
 export default {
 	name: 'SignUpBox',
@@ -63,13 +58,20 @@ export default {
 			newUserEmail: '',
 			newUserPassword: '',
 			confirmPassword: '',
-			passwordsMatch: true,
-			emailValid: true
+			passwordsMatch: true
 		}
 	},
 	methods: {
 		createNewUser () {
-      
+		  
+      this.$validator.validateAll().then(success => {
+          if (!success) {
+              // handle error
+              router.push({ path: '/login'});
+              window.alert("Please fill out all required information.");
+              return;
+          }
+      });
       // Create a new user with email and password.
       
       var email = this.newUserEmail;
@@ -79,21 +81,14 @@ export default {
     
           // Handle Errors here.
           
+          if (this.newUserPassword !== this.confirmPassword) {
+            window.alert("Passwords do not match.");
+            return;
+          }
+          
           var errorCode = error.code;
           var errorMessage = error.message;
           
-          if (this.newUserPassword !== this.confirmPassword && this.newUserPassword.length < 6 && this.newUserEmail.length < 4) {
-            this.passwordsMatch = false;
-            this.emailValid = false;
-            return router.push({ path: '/login' });
-          } else if (this.newUserPassword !== this.confirmPassword || this.newUserPassword.length < 6) {
-            this.passwordsMatch = false;
-            return router.push({ path: '/login' });
-          } else if (this.newUserEmail.length < 4) {
-            this.emailValid = false;
-            return router.push({ path: '/login' });
-          }
-
           return router.push({ path: '/login' });
           // ...
       }).then(() => {
@@ -147,10 +142,6 @@ small {
 
 .header {
   font-family: 'Roboto', sans-serif;
-}
-
-.help {
-  color: red;
 }
 
 </style>

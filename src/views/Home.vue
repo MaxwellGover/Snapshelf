@@ -17,13 +17,13 @@
                 Filter
               </p>
               <ul class="menu-list">
-                  <li><a>New In</a></li>
+                  <li @click="backToHome"><a>New In</a></li>
               </ul>
               <p class="menu-label">
                 Category
               </p>
               <ul class="menu-list">
-                <li @click="toggleCoats()">
+                <li @click="toggleCoats">
                     <a>Coats</a>
                     <ul v-show="coatsDropdown">
                         <li><a>Double Breasted & Peacoats</a></li>
@@ -34,7 +34,7 @@
                         <li><a>Trench Coats</a></li>
                     </ul>
                 </li>
-                <li @click="toggleJackets()">
+                <li @click="toggleJackets">
                     <a>Jackets</a>
                     <ul v-show="jacketsDropdown">
                         <li><a>Biker Jackets</a></li>
@@ -82,7 +82,13 @@ export default {
             return this.coatsDropdown = !this.coatsDropdown;
         },
         toggleJackets () {
+            router.push({ path: '/jackets'});
             return this.jacketsDropdown = !this.jacketsDropdown;
+        },
+        backToHome () {
+           this.coatsDropdown = false;
+           this.jacketsDropdown = false;
+           return router.push({ path: '/'});
         }
     }
 };

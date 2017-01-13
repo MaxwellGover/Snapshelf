@@ -17,6 +17,7 @@ import AccountSettings from './components/UserAccount/AccountSettings'
 import Home from './views/Home'
 import ProductProfile from './views/ProductProfile'
 import CoatsDisplay from './components/Home/CoatsDisplay'
+import JacketsDisplay from './components/Home/JacketsDisplay'
 import NewItems from './components/Home/NewItems'
 
 Vue.use(VueRouter)
@@ -26,7 +27,8 @@ const routes = [
   { path: '/', component: Home,
     children: [
       { path: '', component: NewItems },
-      { path: 'coats', component: CoatsDisplay } 
+      { path: 'coats', component: CoatsDisplay },
+      { path: 'jackets', component: JacketsDisplay}
     ]
   },
   { path: '/activate', component: Activate },

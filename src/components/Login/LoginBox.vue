@@ -9,12 +9,12 @@
 		
 		    <label class="label">EMAIL *</label>
         <p class="control">
-          <input class="input is-medium" type="email" v-model="email">
+          <input class="input" type="email" v-model="email">
         </p>
         
         <label class="label">PASSWORD *</label>
         <p class="control">
-          <input class="input is-medium" type="password" v-model="password">
+          <input class="input" type="password" v-model="password">
           <small class="forgot-pw">Forgot Password?</small>
         </p>
         
@@ -40,8 +40,7 @@ export default {
 	data () {
 		return {
 			email: '',
-			password: '',
-			error: false
+			password: ''
 		}
 	},
 	methods: {
@@ -59,12 +58,7 @@ export default {
                 window.alert('User does not exist');
                 // ...
             }).then (() => {
-                // If user exists, push to home where checkUser will run
-                if (this.error === true) {
-                  router.push({ path: '/login'});
-                } else if (this.error === false){
-                  router.push({ path: '/' });
-                }
+                router.push({ path: '/' });
             });
     }
 	}
@@ -77,7 +71,7 @@ export default {
 
 .box {
     width: 540px;
-    height: 502px;
+    height: 470px;
 }
 
 label {
@@ -91,7 +85,7 @@ input {
 
 .login-btn {
   font-family: 'Roboto', sans-serif;
-	margin-top: 190px;
+	margin-top: 170px;
 	float: right;
 }
 

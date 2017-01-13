@@ -8,26 +8,31 @@
         
         <label class="label">RETAILER NAME</label>
         <p class="control">
-          <input class="input is-medium" type="text" v-model="retailerName">
+          <input class="input" type="text" v-model="retailerName">
         </p>
         
         <label class="label">RETAILER LOCATION</label>
         <p class="control">
-          <input class="input is-medium" type="text" v-model="retailerLocation">
+          <input class="input" type="text" v-model="retailerLocation">
         </p>
         <small>Example: Lansing, MI</small>
         
         <label class="label">RETAILER EMAIL</label>
         <p class="control">
-          <input class="input is-medium" type="email" v-model="retailerEmail">
+          <input class="input" type="email" v-model="retailerEmail">
         </p>
         <small>This should be the email you provided Snapshelf when you applied.</small>
         
         <label class="label">RETAILER PASSWORD</label>
         <p class="control">
-          <input class="input is-medium" type="password" v-model="retailerPassword">
+          <input class="input" type="password" v-model="retailerPassword">
         </p>
         <small>This should be the password that was provided to you in your confirmation email.</small>
+        
+        <label class="label">CONFIRM PASSWORD</label>
+        <p class="control">
+          <input class="input" type="password" v-model="confirmPassword">
+        </p>
         
         <a class="button is-light" @click="activate()">
             <span class="icon">
@@ -61,7 +66,8 @@ export default {
             retailerLocation: '',
             retailerEmail: '',
             retailerPassword: '',
-            verifyPassword: '',
+            confirmPassword: '',
+            activationError: false
         };
     },
     methods: {
@@ -72,10 +78,10 @@ export default {
             var email = this.retailerEmail;
             var password = this.retailerPassword; 
             
-            firebaseAuth.signInWithEmailAndPassword(email, password).catch(function(error) {
+            firebaseAuth.signInWithEmailAndPassword(email, password).catch((error) => {
                 
-                // Handle Errors here.
-                window.alert('Add this retailer in Firebase first.');
+                this.activationError = true;
+                window.alert("There was an error activating this account. Make sure passwords match and that the retailer has first been added manually in Firebase.")
                 var errorCode = error.code;
                 var errorMessage = error.message;
                 // ...
@@ -89,12 +95,15 @@ export default {
                   isRetailer: true,
                   isAdmin: false
                 });
-          
+                this.determineRoute();
             });
-            
-            // Push to retailer dashboard. 
-            router.push({ path: '/' });
-            
+        },
+        determineRoute() {
+            if (this.activationError === true) {
+                router.push({ path: '/activate'})
+            } else {
+                router.push({ path: '/'})
+            }
         }
     }
 };
@@ -116,7 +125,9 @@ export default {
 
 .box {
     width: 620px;
-    margin-top: 40px
+    margin-top: 40px;
+    box-shadow: none;
+    border-radius: 0px;
 }
 
 .button {

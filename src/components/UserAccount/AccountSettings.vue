@@ -7,8 +7,8 @@
     <div class="box">
        
        <div v-if="isEditing === false">
-            <p>Name: {{dbUser.displayName}}</p>
-            <p>Email: {{dbUser.email}}</p><br />
+            <p><b>Name:</b> {{dbUser.displayName}}</p>
+            <p><b>Email:</b> {{dbUser.email}}</p><br />
             <p class="control">
                 <a class="button" @click="editDetails()">
                     <span class="icon">
@@ -71,16 +71,24 @@ export default {
         },
         saveChanges () {
             
-            const user = firebase.auth().currentUser;
-
-            user.updateEmail(this.newEmail).then(() => {
-                // Update successful.
-                window.alert("Your email his been successfully updated to " + this.newEmail)
-            }, (error) => {
-                // An error happened.
-                window.alert("This email already exists");
-                return this.newEmail = this.oldEmail;
-            });
+            if (this.newEmail === this.oldEmail) {
+                // Do nothing
+            } else {
+                const user = firebase.auth().currentUser;
+                user.updateEmail(this.newEmail).then(() => {
+                    // Update successful.
+                    window.alert("Your email his been successfully updated to " + this.newEmail)
+                }, (error) => {
+                    // An error happened.
+                    window.alert("This email already exists");
+                    return this.newEmail = this.oldEmail;
+                });
+            
+            }
+            
+            if (this.newName !== this.oldName) {
+                window.alert("Your name has been changed to " + this.newName)
+            }
             
             store.dispatch('updateAccountDetails', {
                 name: this.newName,

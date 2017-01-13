@@ -40,7 +40,8 @@ export default {
 	data () {
 		return {
 			email: '',
-			password: ''
+			password: '',
+			invalidUser: false
 		}
 	},
 	methods: {
@@ -55,10 +56,16 @@ export default {
                 // Handle Errors here.
                 var errorCode = error.code;
                 var errorMessage = error.message;
-                window.alert('User does not exist');
+                this.invalidUser = true;
+                window.alert("Could not find a user with those credentials.");
+                return; 
                 // ...
             }).then (() => {
-                router.push({ path: '/' });
+                if (this.invalidUser === false) {
+                  router.push({ path: '/' });
+                } else {
+                  router.push({ path: '/login'})
+                }
             });
     }
 	}

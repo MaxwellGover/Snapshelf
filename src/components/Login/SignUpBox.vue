@@ -58,20 +58,23 @@ export default {
 			newUserEmail: '',
 			newUserPassword: '',
 			confirmPassword: '',
-			passwordsMatch: true
+			submissionError: false
 		}
 	},
 	methods: {
 		createNewUser () {
 		  
+      // Check for validation errors
+      
       this.$validator.validateAll().then(success => {
           if (!success) {
               // handle error
-              router.push({ path: '/login'});
+              this.submissionError = true;
               window.alert("Please fill out all required information.");
               return;
           }
       });
+      
       // Create a new user with email and password.
       
       var email = this.newUserEmail;
@@ -82,6 +85,7 @@ export default {
           // Handle Errors here.
           
           if (this.newUserPassword !== this.confirmPassword) {
+            router.push({ path: '/login'})
             window.alert("Passwords do not match.");
             return;
           }
@@ -89,9 +93,12 @@ export default {
           var errorCode = error.code;
           var errorMessage = error.message;
           
-          return router.push({ path: '/login' });
+          router.push({ path: '/login' });
+          return;
           // ...
       }).then(() => {
+        
+          // Persist user in Firebase.
         
           var user = firebaseAuth.currentUser;
           database.ref('/users/' + user.uid).set({
@@ -102,6 +109,8 @@ export default {
             location: ''
           });
           
+          // Send email verification.
+          
           user.sendEmailVerification().then(function() {
             // Email sent.
             }, function(error) {
@@ -109,10 +118,17 @@ export default {
           });
         
       });
-    
-      router.push({ path: '/' });
       
-		  }
+      this.determineRoute();
+      
+     }
+	 },
+	 determineRoute () {
+	    if (this.submissionError === false) {
+        router.push({ path: '/' });
+      } else {
+        router.push({ path: '/login' });
+      }
 	 }
 }
 

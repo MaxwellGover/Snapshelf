@@ -12,6 +12,7 @@
 
   			<div class="nav-right">
   				<!-- If user not signed in show this -->
+  				<!--
     			<span class="nav-item" v-if="user.isAuthed === false">
       				<a class="button">
         				<span class="icon">
@@ -20,6 +21,7 @@
         				<span>Join Snapshelf</span>
       				</a>
       			</span>
+      			-->
       			
       			<!-- If user is signed in show this -->
       			<a class="nav-item" v-if="user.isRetailer === true" @click="goToDash">

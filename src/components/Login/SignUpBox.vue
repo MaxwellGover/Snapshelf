@@ -8,7 +8,7 @@
 		<label class="label">NAME *</label>
         <p class="control">
           <input v-validate data-vv-rules="required" :class="{'input': true, 'is-danger': errors.has('name') }" name="name" type="text" v-model="newUserName">
-          <span v-show="errors.has('password')" class="help is-danger">{{ errors.first('name') }}</span>
+          <span v-show="errors.has('name')" class="help is-danger">{{ errors.first('name') }}</span>
         </p>
 		
 		<label class="label">EMAIL *</label>

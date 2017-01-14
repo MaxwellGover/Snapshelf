@@ -1,31 +1,28 @@
 <template>
-	
-	<div class="box">
-	  
-	      <div class="mini-flex">
-	        <p>Returning User</p>
-	        <i class="thumbs-up fa fa-thumbs-up fa-2x" aria-hidden="true"></i>
-	      </div>
-		
-		    <label class="label">EMAIL *</label>
-        <p class="control">
-          <input class="input" type="email" v-model="email">
-        </p>
-        
-        <label class="label">PASSWORD *</label>
-        <p class="control">
-          <input class="input" type="password" v-model="password">
-          <small class="forgot-pw">Forgot Password?</small>
-        </p>
-        
-        <a class="login-btn button is-light" @click="signIn()">
-          <span class="icon">
-            <i class="fa fa-lock fa-2x" aria-hidden="true"></i>
-          </span>
-          <span>LOGIN</span>
-        </a>
-	
-	</div>
+  	
+  	<div class="box container">
+  	  
+  	      <p class="header">Sign in to your account.</p>
+  		
+  		    <label class="label">EMAIL *</label>
+          <p class="control">
+            <input class="input" type="email" v-model="email">
+          </p>
+          
+          <label class="label">PASSWORD *</label>
+          <p class="control">
+            <input class="input" type="password" v-model="password">
+            <small class="forgot-pw">Forgot Password?</small>
+          </p>
+          
+          <a class="login-btn button is-light is-pulled-right" @click="signIn()">
+            <span class="icon">
+              <i class="fa fa-lock fa-2x" aria-hidden="true"></i>
+            </span>
+            <span>LOGIN</span>
+          </a>
+  	
+  	</div>
 
 </template>
 
@@ -74,11 +71,16 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css?family=Caveat');
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
 .box {
+    display: flex;
+    flex-direction: column;
     width: 540px;
-    height: 470px;
+    margin-top: 50px;
+    box-shadow: none;
+    border-radius: 0px;
 }
 
 label {
@@ -86,14 +88,9 @@ label {
 	font-family: 'Roboto', sans-serif;
 }
 
-input {
-  margin-bottom: 10px;
-}
-
 .login-btn {
   font-family: 'Roboto', sans-serif;
-	margin-top: 170px;
-	float: right;
+  align-self: flex-end;
 }
 
 .mini-flex {
@@ -111,4 +108,22 @@ input {
   margin-left: 5px;
 }
 
+.header {
+  font-family: 'Caveat', cursive;
+  text-align: center;
+  font-size: 28px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+/* Mobile styles */
+@media only screen and (max-width: 980px) {
+  .box {
+    width: 100%;
+    margin-right: 10px;
+    margin-top: -20px;
+    box-shadow: none;
+    border-radius: 0px;
+  }
+}
 </style>

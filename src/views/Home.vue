@@ -1,6 +1,14 @@
 <template>
     
     <div>
+
+        <div class="tabs is-touch is-hidden-desktop">
+            <ul>
+                <li @click="backToHome"><a>New</a></li>
+                <li @click="toggleCoats"><a>Coats</a></li>
+                <li @click="toggleJackets"><a>Jackets</a></li>
+            </ul>
+        </div>
         
         <div class="banner">
           <div class="content container">
@@ -11,7 +19,7 @@
         </div>
     
         <div class="home-view container">
-            <aside class="menu">
+            <aside class="menu is-hidden-touch">
                
                <p class="menu-label">
                 Filter
@@ -141,5 +149,15 @@ export default {
 
 a:hover {
     color: #000;
+}
+
+/* Mobile styles */
+@media only screen and (max-width: 980px) {
+    .tabs {
+        background-color: #fff
+    }
+    .banner {
+        margin-top: -20px
+    }
 }
 </style>

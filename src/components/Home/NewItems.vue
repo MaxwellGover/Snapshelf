@@ -2,6 +2,9 @@
            
     <div class="box">
         <h1 class="title">New Items</h1>
+        <div class="is-flex-touch">
+        	
+        </div>
     </div>
 
 </template>
@@ -20,7 +23,8 @@ export default {
 .box {
     margin-top: 10px;
     box-shadow: none ;
-    margin-left: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
     border-radius: 0px;
     width: 100%;
 }

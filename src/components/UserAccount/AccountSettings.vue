@@ -125,11 +125,28 @@ export default {
 
 .box {
     box-shadow: none;
-    border-radius: 0px;
+    border-radius: 0px
 }
 
 .save-btn {
     margin-top: 10px;
+}
+
+/* Mobile styles */
+@media only screen and (max-width: 980px) {
+    .control {
+        width: 100%;
+    }
+
+    .box {
+        margin-left: 10px;
+        margin-right: 10px   
+    }
+
+    .header {
+        margin-top: 20px;
+        margin-left: 10px;
+    }
 }
 
 </style>

@@ -10,7 +10,13 @@
     			</a>
   			</div>
 
-  			<div class="nav-right">
+         <span class="nav-toggle" @click="toggleMobileMenu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+
+  			<div class="nav-right nav-menu" v-bind:class="{'is-active': active}">
   				<!-- If user not signed in show this -->
   				<!--
     			<span class="nav-item" v-if="user.isAuthed === false">
@@ -35,7 +41,7 @@
       				</a>
       			</span>
       			
-      			<span class="nav-item" v-if="user.isAuthed === true && user.isRetailer === false">
+      			<span class="nav-item is-hidden-touch" v-if="user.isAuthed === true && user.isRetailer === false">
 	      			<a class="wishlist-icon button" @click="goToWishlist">
 						<span class="icon">
 	  						<i class="fa fa-star" aria-hidden="true"></i>
@@ -68,12 +74,15 @@ import router from '../../router/index'
 
 export default {
 	name: 'Navigation',
+  data () {
+    return {
+      active: false
+    }
+  },
 	computed: {
-		
 		user () {
 			return store.state.authentication.user
 		}
-	
 	},
 	methods: {
 		goToSignIn () {
@@ -91,6 +100,9 @@ export default {
 		goToHome () {
 			router.push({ path: '/' })
 		},
+    toggleMobileMenu () {
+      this.active = !this.active
+    },
 		signOut () {
 
 			// Dispatches action that signs out current user and changes isAuthed to false. 
@@ -118,6 +130,7 @@ export default {
 .title {
 	font-family: 'Caveat', cursive;
 	font-size: 32px;
+  margin-left: 5px;
 }
 
 .wishlist-icon {

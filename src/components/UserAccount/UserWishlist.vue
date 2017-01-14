@@ -33,4 +33,23 @@ export default {
 	margin-bottom: 20px;
 }
 
+.box {
+	box-shadow: none;
+	border-radius: 0px;
+}
+
+/* Mobile styles */
+@media only screen and (max-width: 980px) {
+ 
+    .box {
+        margin-left: 10px;
+        margin-right: 10px   
+    }
+
+    .header {
+        margin-top: 20px;
+        margin-left: 10px;
+    }
+}
+
 </style>

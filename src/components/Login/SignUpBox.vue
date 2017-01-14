@@ -1,8 +1,10 @@
 <template>
-	
-	<div class="box">
+
+	<div class="box container">
+
+      <p class="header">Register an account.</p>
 	    
-	    <p class="header">New Customer Account</p>
+	    <p class="">New Customer Account</p>
 	    <small>Required fields *</small>
 		
 		<label class="label">NAME *</label>
@@ -33,7 +35,7 @@
           <span class="icon">
             <i class="fa fa-lock fa-2x" aria-hidden="true"></i>
           </span>
-          <span>LOGIN</span>
+          <span>REGISTER</span>
         </a>
 	
 	</div>
@@ -136,9 +138,15 @@ export default {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Caveat');
 
 .box {
+    display: flex;
+    flex-direction: column;
     width: 540px;
+    margin-top: 50px;
+    box-shadow: none;
+    border-radius: 0px
 }
 
 label {
@@ -148,8 +156,8 @@ label {
 
 .button {
   font-family: 'Roboto', sans-serif;
-	margin-top: 40px;
-	float: right;
+	margin-top: 20px;
+  align-self: flex-end;
 }
 
 small {
@@ -157,7 +165,22 @@ small {
 }
 
 .header {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Caveat', cursive;
+  text-align: center;
+  font-size: 28px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* Mobile styles */
+@media only screen and (max-width: 980px) {
+  .box {
+    width: 100%;
+    margin-right: 10px;
+    margin-top: -20px;
+    box-shadow: none;
+    border-radius: 0px;
+  }
 }
 
 </style>

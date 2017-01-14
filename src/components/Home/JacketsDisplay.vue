@@ -2,6 +2,10 @@
            
     <div class="box">
         <h1 class="title">Jackets</h1>
+
+        <div class="is-flex-touch">
+        	
+        </div>
     </div>
 
 </template>
@@ -23,5 +27,14 @@ export default {
     margin-left: 20px;
     border-radius: 0px;
     width: 100%;
+}
+
+/* Mobile styles */
+@media only screen and (max-width: 980px) {
+
+    .box {
+        margin-left: 10px;
+        margin-right: 10px   
+    }
 }
 </style>

@@ -64,7 +64,7 @@
 <script>
 import store from '../../store/index'
 import { firebaseAuth, database } from '../../firebase/constants'
-import router from '../../main'
+import router from '../../router/index'
 
 export default {
 	name: 'Navigation',

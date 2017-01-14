@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import router from '../../main'
+import router from '../../router/index'
 import firebase from 'firebase'
 import store from '../../store/index'
 

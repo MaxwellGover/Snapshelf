@@ -33,7 +33,7 @@
 
 import { firebaseAuth } from '../../firebase/constants'
 import store from '../../store/index'
-import router from '../../main'
+import router from '../../router/index'
 
 export default {
 	name: 'LoginBox',

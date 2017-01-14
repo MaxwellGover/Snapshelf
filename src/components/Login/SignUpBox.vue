@@ -46,7 +46,7 @@ import Vue from 'vue';
 import VeeValidate from 'vee-validate';
 import { firebaseAuth, database } from '../../firebase/constants'
 import store from '../../store/index'
-import router from '../../main'
+import router from '../../router/index'
 
 Vue.use(VeeValidate);
 

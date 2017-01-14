@@ -4,6 +4,10 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import App from './App'
 import store from './store/index'
+
+import router from './router/index'
+
+/*
 import VueRouter from 'vue-router'
 
 import Activate from './views/Activate'
@@ -53,7 +57,7 @@ const router = new VueRouter({
 });
 
 export default router;
-
+/*
 
 /* eslint-disable no-new */
 new Vue({

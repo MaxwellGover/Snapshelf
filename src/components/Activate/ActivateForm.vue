@@ -49,13 +49,9 @@
 
 <script>
 import { firebaseAuth, database } from '../../firebase/constants'
-import store from '../../store/index'
 import router from '../../router/index'
 
 export default {
-    
-    // This component allows retailers to active their Snapshelf account. 
-    
     name: 'ActivateForm',
     data () {
         return {
@@ -95,7 +91,9 @@ export default {
                   isRetailer: true,
                   isAdmin: false
                 });
+                
                 this.determineRoute();
+            
             });
         },
         determineRoute() {

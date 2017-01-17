@@ -27,7 +27,7 @@
         
         <label class="label">CONFIRM PASSWORD *</label>
         <p class="control">
-          <input v-validate data-vv-rules="required|min:6" :class="{'input': true, 'is-danger': errors.has('confirm password') }" name="confirm password" type="password" v-model="confirmPassword">
+          <input v-validate data-vv-rules="required|min:6" :class="{'input': true, 'is-danger': errors.has('confirm password') }" name="confirm password" type="password" v-model="confirmPassword" v-on:keyup.enter="createNewUser">
           <span v-show="errors.has('confirm password')" class="help is-danger">{{ errors.first('confirm password') }}</span>
         </p>
         
@@ -47,7 +47,6 @@
 import Vue from 'vue';
 import VeeValidate from 'vee-validate';
 import { firebaseAuth, database } from '../../firebase/constants'
-import store from '../../store/index'
 import router from '../../router/index'
 
 Vue.use(VeeValidate);

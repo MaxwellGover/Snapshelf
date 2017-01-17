@@ -21,17 +21,17 @@
 <script>
 
 export default {
-    name: 'DashboardProducts'
+    name: 'DashboardProducts',
 };
 
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css?family=Caveat');
+@import url('https://fonts.googleapis.com/css?family=Amiko');
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
 .header {
-    font-family: 'Caveat', cursive;
+    font-family: 'Amiko', sans-serif;
 	font-size: 28px;
 	margin-top: 20px;
 	margin-bottom: 0px;
@@ -39,6 +39,8 @@ export default {
 
 .box {
     margin-top: 40px;
+    box-shadow: none;
+    border-radius: 0px;
 }
 
 .header-text {

@@ -68,7 +68,6 @@
 </template>
 
 <script>
-import store from '../../store/index'
 import { firebaseAuth, database } from '../../firebase/constants'
 import router from '../../router/index'
 
@@ -81,7 +80,7 @@ export default {
   },
 	computed: {
 		user () {
-			return store.state.authentication.user
+			return this.$store.state.authentication.user
 		}
 	},
 	methods: {
@@ -108,7 +107,7 @@ export default {
 			// Dispatches action that signs out current user and changes isAuthed to false. 
 
 			firebaseAuth.signOut().then(() => {
-  				store.dispatch('signOut');
+  				this.$store.dispatch('signOut');
 
   				router.push({ path: '/' })
 			}, function(error) {

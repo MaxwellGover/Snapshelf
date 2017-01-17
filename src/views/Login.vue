@@ -59,17 +59,16 @@ export default {
 .tabs {
 	background-color: #fff;
 	border-bottom-color: #000;
-	font-size: 16px;
+	font-size: 14px;
 }
-
 
 /* Mobile styles */
 @media only screen and (max-width: 980px) {
 
-	.tabs {
-		background-color: #fff;
-		border-bottom-color: #000
-	}
+.tabs {
+	background-color: #fff;
+	border-bottom-color: #000
+}
 
 }
 </style>

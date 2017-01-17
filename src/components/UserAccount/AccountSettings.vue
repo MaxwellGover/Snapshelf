@@ -45,7 +45,6 @@
 // TODO: Error code not running when email already exists. 
 
 import firebase from 'firebase'
-import store from '../../store/index'
 import Vue from 'vue'
 import VueFire from 'vuefire'
 
@@ -90,7 +89,7 @@ export default {
                 window.alert("Your name has been changed to " + this.newName)
             }
             
-            store.dispatch('updateAccountDetails', {
+            this.$store.dispatch('updateAccountDetails', {
                 name: this.newName,
                 email: this.newEmail,
                 isRetailer: this.dbUser.isRetailer,
@@ -109,11 +108,11 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css?family=Caveat');
+@import url('https://fonts.googleapis.com/css?family=Amiko');
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
 .header { 
-    font-family: 'Caveat', cursive;
+    font-family: 'Amiko', sans-serif;
 	font-size: 28px;
 	margin-top: 40px;
 	margin-bottom: 20px;

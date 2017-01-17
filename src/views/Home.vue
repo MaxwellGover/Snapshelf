@@ -104,7 +104,6 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css?family=Caveat');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700');
 
 .home-view {
@@ -128,7 +127,7 @@ export default {
 
 .banner {
     padding: 15px;
-    background-color: #eff8f3;
+    background-color: #cecece;
 }
 
 .banner-title {
@@ -139,12 +138,6 @@ export default {
 
 .banner-text {
     
-}
-
-.new-items-title {
-    font-family: 'Caveat', cursive;
-	font-size: 32px; 
-	margin-bottom: 40px;
 }
 
 a:hover {

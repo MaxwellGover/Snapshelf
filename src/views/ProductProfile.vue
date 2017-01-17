@@ -28,7 +28,6 @@ import ProductDetails from '../components/ProductProfile/ProductDetails'
 import RetailerCard from '../components/ProductProfile/RetailerCard'
 import ProductImage from '../components/ProductProfile/ProductImage'
 
-
 export default {
     name: 'ProductProfile',
     components: {

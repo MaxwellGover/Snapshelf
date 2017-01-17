@@ -69,7 +69,6 @@
 <script>
 import router from '../../router/index'
 import firebase from 'firebase'
-import store from '../../store/index'
 
 export default {
     name: 'UserAccountNav',
@@ -99,7 +98,7 @@ export default {
 			// Dispatches action that signs out current user and changes isAuthed to false. 
 
 			firebase.auth().signOut().then(() => {
-  				store.dispatch('signOut');
+  				this.$store.dispatch('signOut');
   				this.active = !this.active;
   				router.push({ path: '/' });
 			}, function(error) {

@@ -9,7 +9,8 @@ const authentication = {
             email: '',
             isRetailer: false,
             isAdmin: false,
-            location: ''
+            location: '',
+            productImages: ''
         }
     },
     mutations: {
@@ -28,8 +29,9 @@ const authentication = {
            state.user.displayName = userInfo.displayName,
            state.user.isRetailer = userInfo.isRetailer,
            state.user.email = userInfo.email,
-           state.user.isAdmin = userInfo.isAdmin
-           state.user.location = userInfo.location
+           state.user.isAdmin = userInfo.isAdmin,
+           state.user.location = userInfo.location,
+           state.user.productImages = userInfo.productImages
         },
         updateDisplayName (state, userInfo) {
             state.user.displayName = userInfo.name
@@ -54,7 +56,8 @@ const authentication = {
                         displayName: dbUser.name,
                         email: dbUser.email,
                         isAdmin: dbUser.isAdmin,
-                        location: dbUser.location
+                        location: dbUser.location,
+                        productImages: dbUser.productImages
                     })
                 })
             }

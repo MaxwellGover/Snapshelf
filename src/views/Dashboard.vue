@@ -9,7 +9,6 @@
 
 <script>
 import DashboardNav from '../components/Dashboard/DashboardNav'
-import store from '../store/index'
 
 export default {
     name: 'Dashboard',
@@ -18,7 +17,7 @@ export default {
     },
     computed: {
         user () {
-            return store.state.authentication.user
+            return this.$store.state.authentication.user
         }
     }
 };

@@ -23,13 +23,13 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css?family=Caveat');
+@import url('https://fonts.googleapis.com/css?family=Amiko');
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
 .header {
     margin-top: 40px;
-    font-family: 'Caveat', cursive;
-	font-size: 32px;
+    font-family: 'Amiko', sans-serif;
+	font-size: 28px;
 	margin-bottom: 20px;
 }
 

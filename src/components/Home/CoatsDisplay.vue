@@ -18,8 +18,7 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css?family=Caveat');
-@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700');
+@import url('https://fonts.googleapis.com/css?family=Amiko');
 
 .box {
     margin-top: 10px;
@@ -29,12 +28,8 @@ export default {
     width: 100%;
 }
 
-/* Mobile styles */
-@media only screen and (max-width: 980px) {
-
-    .box {
-        margin-left: 10px;
-        margin-right: 10px   
-    }
+.title {
+    font-size: 28px;
+    font-family: 'Amiko', sans-serif;
 }
 </style>

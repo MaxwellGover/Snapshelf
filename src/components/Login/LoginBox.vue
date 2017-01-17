@@ -11,11 +11,11 @@
           
           <label class="label">PASSWORD *</label>
           <p class="control">
-            <input class="input" type="password" v-model="password">
+            <input class="input" type="password" v-model="password" v-on:keyup.enter="signIn">
             <small class="forgot-pw">Forgot Password?</small>
           </p>
           
-          <a class="login-btn button is-light is-pulled-right" @click="signIn()">
+          <a class="login-btn button is-light is-pulled-right" @click="signIn">
             <span class="icon">
               <i class="fa fa-lock fa-2x" aria-hidden="true"></i>
             </span>
@@ -29,7 +29,6 @@
 <script>
 
 import { firebaseAuth } from '../../firebase/constants'
-import store from '../../store/index'
 import router from '../../router/index'
 
 export default {
